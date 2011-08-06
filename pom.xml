@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jynacore</groupId>
+  <artifactId>jynacore</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>System Dynamics Modeler and Simulator Engine</description>
+  <dependencies>
+    <dependency>
+      <groupId>jfree</groupId>
+      <artifactId>jfreechart</artifactId>
+      <version>1.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>jdom</groupId>
+      <artifactId>jdom</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+</project>
