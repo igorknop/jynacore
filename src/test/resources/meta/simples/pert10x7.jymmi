@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+<name>Projeto em Rede10x7</name>
+<metaModelFile>Projeto de Software Simples.jymm</metaModelFile>
+<classInstances>
+<classInstance>
+<name>A1</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A2</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A3</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A4</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A5</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A6</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A7</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A8</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A1</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A9</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A4</target>
+<target>A3</target>
+<target>A6</target>
+<target>A5</target>
+<target>A8</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A10</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A6</target>
+<target>A5</target>
+<target>A8</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A11</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A2</target>
+<target>A3</target>
+<target>A7</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A12</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A5</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A13</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A4</target>
+<target>A6</target>
+<target>A8</target>
+<target>A7</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A14</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A8</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A15</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A6</target>
+<target>A5</target>
+<target>A8</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A16</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A11</target>
+<target>A9</target>
+<target>A10</target>
+<target>A13</target>
+<target>A12</target>
+<target>A15</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A17</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A13</target>
+<target>A12</target>
+<target>A15</target>
+<target>A14</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A18</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A10</target>
+<target>A13</target>
+<target>A12</target>
+<target>A14</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A19</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A10</target>
+<target>A12</target>
+<target>A14</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A20</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A10</target>
+<target>A12</target>
+<target>A14</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A21</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A11</target>
+<target>A9</target>
+<target>A10</target>
+<target>A12</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A22</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A10</target>
+<target>A13</target>
+<target>A15</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A23</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A19</target>
+<target>A17</target>
+<target>A16</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A24</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A19</target>
+<target>A18</target>
+<target>A16</target>
+<target>A21</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A25</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A18</target>
+<target>A20</target>
+<target>A17</target>
+<target>A22</target>
+<target>A16</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A26</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A19</target>
+<target>A18</target>
+<target>A22</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A27</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A17</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A28</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A19</target>
+<target>A17</target>
+<target>A16</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A29</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A19</target>
+<target>A16</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A30</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A28</target>
+<target>A26</target>
+<target>A25</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A31</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A28</target>
+<target>A23</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A32</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A28</target>
+<target>A27</target>
+<target>A26</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A33</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A24</target>
+<target>A23</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A34</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A29</target>
+<target>A26</target>
+<target>A25</target>
+<target>A24</target>
+<target>A23</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A35</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A29</target>
+<target>A26</target>
+<target>A25</target>
+<target>A23</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A36</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A29</target>
+<target>A27</target>
+<target>A26</target>
+<target>A24</target>
+<target>A23</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A37</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A30</target>
+<target>A33</target>
+<target>A32</target>
+<target>A35</target>
+<target>A34</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A38</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A31</target>
+<target>A36</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A39</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A30</target>
+<target>A31</target>
+<target>A36</target>
+<target>A33</target>
+<target>A35</target>
+<target>A34</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A40</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A30</target>
+<target>A31</target>
+<target>A32</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A41</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A36</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A42</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A33</target>
+<target>A32</target>
+<target>A35</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A43</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A36</target>
+<target>A32</target>
+<target>A35</target>
+<target>A34</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A44</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A43</target>
+<target>A41</target>
+<target>A37</target>
+<target>A38</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A45</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A40</target>
+<target>A43</target>
+<target>A42</target>
+<target>A37</target>
+<target>A38</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A46</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A42</target>
+<target>A37</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A47</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A42</target>
+<target>A37</target>
+<target>A39</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A48</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A42</target>
+<target>A38</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A49</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A41</target>
+<target>A43</target>
+<target>A39</target>
+<target>A38</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A50</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A43</target>
+<target>A39</target>
+<target>A38</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A51</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A46</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A52</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A46</target>
+<target>A44</target>
+<target>A47</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A53</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A45</target>
+<target>A44</target>
+<target>A47</target>
+<target>A48</target>
+<target>A50</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A54</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A49</target>
+<target>A47</target>
+<target>A50</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A55</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A45</target>
+<target>A44</target>
+<target>A49</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A56</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A46</target>
+<target>A48</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A57</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A45</target>
+<target>A49</target>
+<target>A47</target>
+<target>A50</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A58</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A56</target>
+<target>A57</target>
+<target>A53</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A59</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A54</target>
+<target>A56</target>
+<target>A51</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A60</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A54</target>
+<target>A57</target>
+<target>A52</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A61</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A54</target>
+<target>A55</target>
+<target>A56</target>
+<target>A52</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A62</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>6.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A55</target>
+<target>A53</target>
+<target>A52</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A63</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A55</target>
+<target>A56</target>
+<target>A57</target>
+<target>A53</target>
+<target>A52</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A64</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A55</target>
+<target>A56</target>
+<target>A53</target>
+<target>A51</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A65</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A58</target>
+<target>A59</target>
+<target>A60</target>
+<target>A62</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A66</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D2</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A59</target>
+<target>A61</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A67</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D3</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A58</target>
+<target>A60</target>
+<target>A63</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A68</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D4</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A58</target>
+<target>A60</target>
+<target>A62</target>
+<target>A64</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A69</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>5.0</value></property>
+<singleRelation><name>Equipe</name><target>D5</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A60</target>
+<target>A64</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A70</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>8.0</value></property>
+<singleRelation><name>Equipe</name><target>D6</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A60</target>
+<target>A64</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A71</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>9.0</value></property>
+<singleRelation><name>Equipe</name><target>D7</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A58</target>
+<target>A59</target>
+<target>A60</target>
+<target>A62</target>
+<target>A61</target>
+<target>A64</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>A72</name>	<class>Atividade</class>
+<items>
+<property><name>duração</name><value>7.0</value></property>
+<singleRelation><name>Equipe</name><target>D1</target></singleRelation>
+<multiRelation><name>Precedente</name><targets>
+<target>A69</target>
+<target>A67</target>
+<target>A68</target>
+<target>A65</target>
+<target>A66</target>
+<target>A71</target>
+<target>A70</target>
+</targets>
+</multiRelation>
+</items>
+</classInstance>
+<classInstance>
+<name>D1</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.6289561137632219</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D2</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.8272185367613336</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D3</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.9714356817732894</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D4</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.7086025374154465</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D5</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.8636174325264632</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D6</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.8667047638729204</value></property></items>
+</classInstance>
+
+<classInstance>
+<name>D7</name>	<class>Desenvolvedor</class>
+<items>
+<property><name>experiência</name><value>0.6584531380188846</value></property></items>
+</classInstance>
+
+</classInstances><scenarios><files><file>Produtividade Baseada na Experiência.jymms</file><file>Produção Baseada na Equipe.jymms</file><file>Dependência de Atividades.jymms</file><file>Geração de Erros Baseada na Produção.jymms</file></files><connects>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D1</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D2</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D3</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D4</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D5</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D6</instance></connect>
+<connect><scenario>Produtividade Baseada na Experiência</scenario><name>ODesenvolvedor</name><instance>D7</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A1</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A1</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A2</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A2</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A3</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A3</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A4</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A4</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A5</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A5</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A6</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A6</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A7</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A7</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A8</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A8</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A9</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A9</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A10</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A10</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A11</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A11</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A12</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A12</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A13</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A13</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A14</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A14</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A15</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A15</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A16</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A16</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A17</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A17</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A18</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A18</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A19</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A19</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A20</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A20</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A21</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A21</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A22</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A22</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A23</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A23</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A24</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A24</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A25</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A25</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A26</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A26</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A27</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A27</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A28</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A28</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A29</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A29</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A30</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A30</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A31</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A31</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A32</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A32</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A33</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A33</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A34</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A34</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A35</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A35</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A36</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A36</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A37</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A37</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A38</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A38</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A39</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A39</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A40</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A40</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A41</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A41</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A42</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A42</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A43</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A43</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A44</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A44</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A45</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A45</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A46</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A46</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A47</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A47</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A48</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A48</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A49</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A49</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A50</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A50</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A51</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A51</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A52</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A52</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A53</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A53</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A54</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A54</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A55</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A55</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A56</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A56</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A57</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A57</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A58</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A58</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A59</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A59</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A60</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A60</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A61</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A61</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A62</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A62</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A63</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A63</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A64</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A64</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A65</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A65</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A66</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A66</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A67</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A67</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A68</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A68</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A69</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A69</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A70</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A70</instance></connect>
+<connect><scenario>Produção Baseada na Equipe</scenario><name>AAtividade</name><instance>A71</instance></connect><connect><scenario>Dependência de Atividades</scenario><name>AAtividade</name><instance>A71</instance></connect>
+</connects></scenarios></metaModelInstance>

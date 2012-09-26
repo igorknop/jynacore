@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel>
+	<name>Flutuação de Pessoal em uma Corporação</name>
+	<!--
+		steps = 100
+		finl time = 12 
+	 -->
+	<stocks>
+		<finiteStock>
+			<name>Pessoal</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>200.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Portfolio</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>2500.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+		<infiniteStock>
+			<name>Fonte de Pessoal</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>Software Obsoleto</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>Software em Desenvolvimento</name>
+		</infiniteStock>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>Contratação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Pessoal Necessário</m:ci>
+						<m:ci>Atraso na Contratação</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Fonte de Pessoal</source>
+			<target>Pessoal</target>
+		</rate>
+		<rate>
+			<name>Eliminação de Software</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>2000</m:cn>
+				</m:math>
+			</expression>
+			<source>Portfolio</source>
+			<target>Software Obsoleto</target>
+		</rate>
+		<rate>
+			<name>Produção de Software</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:times />
+						<m:ci>Produtividade</m:ci>
+						<m:ci>Pessoal</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Software em Desenvolvimento</source>
+			<target>Portfolio</target>
+		</rate>
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>Produtividade</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Portfolio Desejado</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>2500</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Portfolio Atual/3</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Portfolio</m:ci>
+                        <m:cn>1</m:cn>
+                    </m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Pessoal Atual</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:plus />
+						<m:ci>Pessoal</m:ci>
+                        <m:cn>200</m:cn>
+                    </m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Diferença</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:minus />
+						<m:ci>Portfolio Desejado</m:ci>
+						<m:ci>Portfolio</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Tempo para completar Portfolio</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>2.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Atraso na Contratação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.025</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Produtividade Necessária</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Diferença</m:ci>
+						<m:ci>Tempo para completar Portfolio</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Pessoal Necessário</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Produtividade Necessária</m:ci>
+						<m:ci>Produtividade</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Produtividade Necessária</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Diferença</m:ci>
+						<m:ci>Tempo para completar Portfolio</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+
+	<informations>
+		<information>
+			<name>Portfolio Desejado- Diferença</name>
+			<source>Portfolio Desejado</source>
+			<consumer>Diferença</consumer>
+		</information>
+		<information>
+			<name>Portfolio - Diferença</name>
+			<source>Portfolio</source>
+			<consumer>Diferença</consumer>
+		</information>
+		<information>
+			<name>Diferença - Produtividade Necessária</name>
+			<source>Diferença</source>
+			<consumer>Produtividade Necessária</consumer>
+		</information>
+		<information>
+			<name>Tempo para completar Portfolio - Produtividade Necessária
+			</name>
+			<source>Tempo para completar Portfolio</source>
+			<consumer>Produtividade Necessária</consumer>
+		</information>
+		<information>
+			<name>Produtividade - Pessoal Necessário</name>
+			<source>Produtividade</source>
+			<consumer>Pessoal Necessário</consumer>
+		</information>
+		<information>
+			<name>Produtividade Necessária - Pessoal Necessário
+			</name>
+			<source>Produtividade Necessária</source>
+			<consumer>Pessoal Necessário</consumer>
+		</information>
+		<information>
+			<name>Pessoal Necessário - Contratação</name>
+			<source>Pessoal Necessário</source>
+			<consumer>Contratação</consumer>
+		</information>
+		<information>
+			<name>Atraso na Contratação - Contratação</name>
+			<source>Atraso na Contratação</source>
+			<consumer>Contratação</consumer>
+		</information>
+		<information>
+			<name>Pessoal - Produção de Software</name>
+			<source>Pessoal</source>
+			<consumer>Produção de Software</consumer>
+		</information>
+		<information>
+			<name>Produtividade - Produção de Software</name>
+			<source>Produtividade</source>
+			<consumer>Produção de Software</consumer>
+		</information>
+	</informations>
+
+</systemDynamicsModel>
+

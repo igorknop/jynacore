@@ -1,0 +1,157 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+	<name>Basic Project Instance</name>
+	<metaModelFile>basicProject.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Proj</name>
+			<class>Project</class>
+			<items>
+				<multiRelation>
+					<name>Task</name>
+					<targets>
+						<target>Design</target>
+						<target>Coding</target>
+						<target>Testing</target>
+					</targets>
+				</multiRelation>
+			</items>
+			
+		</classInstance>
+		<classInstance>
+			<name>Coding</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Team</name>
+					<targets>
+						<target>D3</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedence</name>
+					<targets>
+						<target>Design</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Design</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>15.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>15.0</value>
+				</property>
+				<multiRelation>
+					<name>Team</name>
+					<targets>
+						<target>D1</target>
+						<target>D2</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Testing</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>5.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>5.0</value>
+				</property>
+				<multiRelation>
+					<name>Team</name>
+					<targets>
+						<target>D4</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedence</name>
+					<targets>
+						<target>Coding</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D2</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>0.8</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D1</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D4</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>0.5</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D3</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>0.6</value>
+				</property>
+			</items>
+		</classInstance>
+	</classInstances>
+	<scenarios />
+
+</metaModelInstance>
+

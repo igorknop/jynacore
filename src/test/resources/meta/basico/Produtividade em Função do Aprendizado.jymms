@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<scenario>
+	<name>Produtividade em Função do Aprendizado</name>
+	<metaModelName>Projeto de Software Básico</metaModelName>
+	<connections>
+		<connection>
+			<name>ODesenvolvedor</name>
+			<className>Desenvolvedor</className>
+			<classInstanceItems>
+				<finiteStock>
+					<name>Dias no Projeto</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0.0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteStock>
+				<rate>
+					<name>Incremento de Dias no Projeto</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>1.0</m:cn>
+						</m:math>
+					</expression>
+					<target>Dias no Projeto</target>
+				</rate>
+				<auxiliary>
+					<name>FatorDNP</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:min />
+								<m:apply>
+									<m:divide />
+									<m:ci>Dias no Projeto</m:ci>
+									<m:cn>20.0</m:cn>
+								</m:apply>
+								<m:cn>1.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>ModificadorDNP</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:lookup />
+								<m:ci>Tabela de Aprendizagem</m:ci>
+								<m:ci>FatorDNP</m:ci>
+								<m:cn>0.0</m:cn>
+								<m:cn>1.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<table>
+					<name>Tabela de Aprendizagem</name>
+					<values>
+						<value>1.0</value>
+						<value>1.0125</value>
+						<value>1.0325</value>
+						<value>1.055</value>
+						<value>1.09</value>
+						<value>1.15</value>
+						<value>1.2</value>
+						<value>1.22</value>
+						<value>1.245</value>
+						<value>1.25</value>
+						<value>1.25</value>
+					</values>
+				</table>
+			</classInstanceItems>
+			<affects>
+				<affect>
+					<name>Produtividade</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:times />
+								<m:ci>Produtividade</m:ci>
+								<m:ci>ModificadorDNP</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</affect>
+			</affects>
+		</connection>
+	</connections>
+</scenario>
+

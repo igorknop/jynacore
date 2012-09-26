@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Copyright (c) 2009 Igor Knop. This file is part of JynaCore. JynaCore
+		is free software: you can redistribute it and/or modify it under the
+		terms of the GNU Lesser General Public License as published by the
+		Free Software Foundation, either version 3 of the License, or (at your
+		option) any later version. JynaCore is distributed in the hope that it
+		will be useful, but WITHOUT ANY WARRANTY; without even the implied
+		warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
+		the GNU Lesser General Public License for more details. You should
+		have received a copy of the GNU Lesser General Public License along
+		with JynaCore. If not, see <http://www.gnu.org/licenses/>.
+	-->
+<systemDynamicsModel>
+	<name>Desenvolvedor Hora Extra</name>
+	<stocks>
+		<finiteStock>
+			<name>D1.Exaustão</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>D1.Descanso</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+
+		<finiteStock>
+			<name>D2.Exaustão</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>D2.Descanso</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+		<infiniteStock>
+			<name>D1.Fonte Exaustão</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>D1.Fonte Descanso 1</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>D1.Fonte Descanso 2</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>D2.Fonte Exaustão</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>D2.Fonte Descanso 1</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>D2.Fonte Descanso 2</name>
+		</infiniteStock>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>D1.Variação de Descanso 1</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>D1.Começando Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D1.Descanso</target>
+			<source>D1.Fonte Descanso 1</source>
+		</rate>
+		<rate>
+			<name>D1.Variação de Descanso 2</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>D1.Saindo Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D1.Fonte Descanso 2</target>
+			<source>D1.Descanso</source>
+		</rate>
+		<rate>
+			<name>D1.Variação de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:apply>
+							<m:eq />
+							<m:ci>D1.Descanso</m:ci>
+							<m:cn>1</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:divide />
+							<m:apply>
+								<m:inverse />
+								<m:ci>D1.Exaustão Máxima</m:ci>
+							</m:apply>
+							<m:cn>20.0</m:cn>
+						</m:apply>
+						<m:ci>D1.Taxa de Exaustão</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D1.Exaustão</target>
+			<source>D1.Fonte Exaustão</source>
+		</rate>
+		<rate>
+			<name>D2.Variação de Descanso 1</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>D2.Começando Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D2.Descanso</target>
+			<source>D2.Fonte Descanso 1</source>
+		</rate>
+		<rate>
+			<name>D2.Variação de Descanso 2</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>D2.Saindo Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D2.Fonte Descanso 2</target>
+			<source>D2.Descanso</source>
+		</rate>
+		<rate>
+			<name>D2.Variação de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:apply>
+							<m:eq />
+							<m:ci>D2.Descanso</m:ci>
+							<m:cn>1</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:divide />
+							<m:apply>
+								<m:inverse />
+								<m:ci>D2.Exaustão Máxima</m:ci>
+							</m:apply>
+							<m:cn>20.0</m:cn>
+						</m:apply>
+						<m:ci>D2.Taxa de Exaustão</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>D2.Exaustão</target>
+			<source>D2.Fonte Exaustão</source>
+		</rate>
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>D1.Horas Diárias</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D1.Exaustão Máxima</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D1.Começando Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>D1.Descanso</m:ci>
+							<m:cn>0.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:gt />
+							<m:ci>D1.Exaustão</m:ci>
+							<m:ci>D1.Exaustão Máxima</m:ci>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D1.Saindo Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>D1.Descanso</m:ci>
+							<m:cn>1.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:lt />
+							<m:ci>D1.Exaustão</m:ci>
+							<m:cn>0.1</m:cn>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>D1.Taxa de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+					<!--
+						<m:apply> <m:lookup /> <m:ci>Tabela de D1.Exaustão</m:ci>
+						<m:ci>Fator de Dedicação</m:ci> <m:cn>0.0</m:cn> <m:cn>1.5</m:cn>
+						</m:apply>
+					-->
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D1.Produtividade</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D2.Horas Diárias</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D2.Exaustão Máxima</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D2.Começando Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>D2.Descanso</m:ci>
+							<m:cn>0.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:gt />
+							<m:ci>D2.Exaustão</m:ci>
+							<m:ci>D2.Exaustão Máxima</m:ci>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D2.Saindo Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>D2.Descanso</m:ci>
+							<m:cn>1.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:lt />
+							<m:ci>D2.Exaustão</m:ci>
+							<m:cn>0.1</m:cn>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>D2.Taxa de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+					<!--
+						<m:apply> <m:lookup /> <m:ci>Tabela de D2.Exaustão</m:ci>
+						<m:ci>Fator de Dedicação</m:ci> <m:cn>0.0</m:cn> <m:cn>1.5</m:cn>
+						</m:apply>
+					-->
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>D2.Produtividade</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+	<informations>
+		<information>
+			<name>D1.info1</name>
+			<source>D1.Exaustão</source>
+			<consumer>D1.Produtividade</consumer>
+		</information>
+		<information>
+			<name>D1.info2</name>
+			<source>D1.Taxa de Exaustão</source>
+			<consumer>D1.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D1.info6</name>
+			<source>D1.Horas Diárias</source>
+			<consumer>D1.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D1.info4</name>
+			<source>D1.Exaustão Máxima</source>
+			<consumer>D1.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D1.info3</name>
+			<source>D1.Começando Descanso</source>
+			<consumer>D1.Variação de Descanso 1</consumer>
+		</information>
+		<information>
+			<name>D1.info5</name>
+			<source>D1.Saindo Descanso</source>
+			<consumer>D1.Variação de Descanso 2</consumer>
+		</information>
+		<information>
+			<name>D1.info8</name>
+			<source>D1.Descanso</source>
+			<consumer>D1.Variação de Exaustão</consumer>
+		</information>
+
+		<information>
+			<name>D1.info9</name>
+			<source>D1.Exaustão</source>
+			<consumer>D1.Saindo Descanso</consumer>
+		</information>
+		<information>
+			<name>D1.info10</name>
+			<source>D1.Exaustão</source>
+			<consumer>D1.Começando Descanso</consumer>
+		</information>
+		<information>
+			<name>D1.info11</name>
+			<source>D1.Exaustão Máxima</source>
+			<consumer>D1.Começando Descanso</consumer>
+		</information>
+		<information>
+			<name>D2.info1</name>
+			<source>D2.Exaustão</source>
+			<consumer>D2.Produtividade</consumer>
+		</information>
+		<information>
+			<name>D2.info2</name>
+			<source>D2.Taxa de Exaustão</source>
+			<consumer>D2.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D2.info6</name>
+			<source>D2.Horas Diárias</source>
+			<consumer>D2.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D2.info4</name>
+			<source>D2.Exaustão Máxima</source>
+			<consumer>D2.Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>D2.info3</name>
+			<source>D2.Começando Descanso</source>
+			<consumer>D2.Variação de Descanso 1</consumer>
+		</information>
+		<information>
+			<name>D2.info5</name>
+			<source>D2.Saindo Descanso</source>
+			<consumer>D2.Variação de Descanso 2</consumer>
+		</information>
+		<information>
+			<name>D2.info8</name>
+			<source>D2.Descanso</source>
+			<consumer>D2.Variação de Exaustão</consumer>
+		</information>
+
+		<information>
+			<name>D2.info9</name>
+			<source>D2.Exaustão</source>
+			<consumer>D2.Saindo Descanso</consumer>
+		</information>
+		<information>
+			<name>D2.info10</name>
+			<source>D2.Exaustão</source>
+			<consumer>D2.Começando Descanso</consumer>
+		</information>
+		<information>
+			<name>D2.info11</name>
+			<source>D2.Exaustão Máxima</source>
+			<consumer>D2.Começando Descanso</consumer>
+		</information>
+
+	</informations>
+</systemDynamicsModel>
+

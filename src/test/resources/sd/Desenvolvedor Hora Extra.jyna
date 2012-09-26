@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Copyright (c) 2009 Igor Knop. This file is part of JynaCore. JynaCore
+		is free software: you can redistribute it and/or modify it under the
+		terms of the GNU Lesser General Public License as published by the
+		Free Software Foundation, either version 3 of the License, or (at your
+		option) any later version. JynaCore is distributed in the hope that it
+		will be useful, but WITHOUT ANY WARRANTY; without even the implied
+		warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
+		the GNU Lesser General Public License for more details. You should
+		have received a copy of the GNU Lesser General Public License along
+		with JynaCore. If not, see <http://www.gnu.org/licenses/>.
+	-->
+<systemDynamicsModel>
+	<name>Desenvolvedor Hora Extra</name>
+	<stocks>
+		<finiteStock>
+			<name>Exaustão</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Descanso</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+		<infiniteStock>
+			<name>Fonte Exaustão</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>Fonte Descanso 1</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>Fonte Descanso 2</name>
+		</infiniteStock>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>Variação de Descanso 1</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>Começando Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>Descanso</target>
+			<source>Fonte Descanso 1</source>
+		</rate>
+		<rate>
+			<name>Variação de Descanso 2</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:ci>Saindo Descanso</m:ci>
+						<m:apply>
+							<m:divide />
+							<m:cn>1.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>Fonte Descanso 2</target>
+			<source>Descanso</source>
+		</rate>
+		<rate>
+			<name>Variação de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:apply>
+							<m:eq />
+							<m:ci>Descanso</m:ci>
+							<m:cn>1</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:divide />
+							<m:apply>
+								<m:inverse />
+								<m:ci>Exaustão Máxima</m:ci>
+							</m:apply>
+							<m:cn>20.0</m:cn>
+						</m:apply>
+						<m:ci>Taxa de Exaustão</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<target>Exaustão</target>
+			<source>Fonte Exaustão</source>
+		</rate>
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>Horas Diárias</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Exaustão Máxima</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Começando Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>Descanso</m:ci>
+							<m:cn>0.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:gt />
+							<m:ci>Exaustão</m:ci>
+							<m:ci>Exaustão Máxima</m:ci>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Saindo Descanso</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:and />
+						<m:apply>
+							<m:eq />
+							<m:ci>Descanso</m:ci>
+							<m:cn>1.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:lt />
+							<m:ci>Exaustão</m:ci>
+							<m:cn>0.1</m:cn>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>Taxa de Exaustão</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+					<!--
+						<m:apply> <m:lookup /> <m:ci>Tabela de Exaustão</m:ci> <m:ci>Fator
+						de Dedicação</m:ci> <m:cn>0.0</m:cn> <m:cn>1.5</m:cn> </m:apply>
+					-->
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Produtividade</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+	<informations>
+		<information>
+			<name>info1</name>
+			<source>Exaustão</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>info2</name>
+			<source>Taxa de Exaustão</source>
+			<consumer>Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>info6</name>
+			<source>Horas Diárias</source>
+			<consumer>Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>info4</name>
+			<source>Exaustão Máxima</source>
+			<consumer>Variação de Exaustão</consumer>
+		</information>
+		<information>
+			<name>info3</name>
+			<source>Começando Descanso</source>
+			<consumer>Variação de Descanso 1</consumer>
+		</information>
+		<information>
+			<name>info5</name>
+			<source>Saindo Descanso</source>
+			<consumer>Variação de Descanso 2</consumer>
+		</information>
+		<information>
+			<name>info8</name>
+			<source>Descanso</source>
+			<consumer>Variação de Exaustão</consumer>
+		</information>
+
+		<information>
+			<name>info9</name>
+			<source>Exaustão</source>
+			<consumer>Saindo Descanso</consumer>
+		</information>
+		<information>
+			<name>info10</name>
+			<source>Exaustão</source>
+			<consumer>Começando Descanso</consumer>
+		</information>
+		<information>
+			<name>info11</name>
+			<source>Exaustão Máxima</source>
+			<consumer>Começando Descanso</consumer>
+		</information>
+	</informations>
+</systemDynamicsModel>
+

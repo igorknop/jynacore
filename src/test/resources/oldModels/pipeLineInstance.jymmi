@@ -1,0 +1,128 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+	<name>PipeLine Project Instance</name>
+	<metaModelFile>pipeLine.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Coding1</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Team</name>
+					<targets>
+						<target>D1</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Coding2</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Team</name>
+					<targets>
+						<target>D2</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Coding3</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>10.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>10.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Coding4</name>
+			<class>Activity</class>
+			<items>
+				<stock>
+					<name>TimeToConclude</name>
+					<value>15.0</value>
+				</stock>
+				<property>
+					<name>duration</name>
+					<value>15.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D2</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D1</name>
+			<class>Developer</class>
+			<items>
+				<property>
+					<name>experience</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+	</classInstances>
+	<scenarios>
+		<scenario>
+			<name>Lack Of Coffe</name>
+			<fileName>lackOfCoffe.jymms</fileName>
+			<connects>
+				<connect>
+					<name>TheDeveloper</name>
+					<instance>D1</instance>
+				</connect>
+			
+			</connects>
+		</scenario>
+	</scenarios>
+</metaModelInstance>
+

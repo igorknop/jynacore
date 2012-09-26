@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<metaModelInstance>
+	<name>Projeto em Cascata</name>
+	<metaModelFile>Projeto de Software Basico.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Projeto número 1</name>
+			<class>Projeto</class>
+			<items>
+				<multiRelation>
+					<name>Tarefa</name>
+					<targets>
+						<target>A1</target>
+						<target>A2</target>
+						<target>A3</target>
+						<target>A4</target>
+						<target>A5</target>
+						<target>A6</target>
+					</targets>
+				</multiRelation>
+			</items>
+
+		</classInstance>
+		<classInstance>
+			<name>A1</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D1</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>A2</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D2</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>A1</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>A3</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D3</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>A2</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>A4</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D4</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>A3</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>A5</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D5</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>A4</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>A6</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D6</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>A5</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D1</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D2</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D3</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D4</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D5</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D6</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+	</classInstances>
+	<scenarios>
+		<scenario>
+			<name>Produtividade Baseada na Experiência</name>
+			<fileName>Produtividade Baseada na Experiência.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D2</instance>
+				</connect>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D4</instance>
+				</connect>
+			</connects>
+		</scenario>
+		<scenario>
+			<name>Produtividade em Função do Aprendizado</name>
+			<fileName>Produtividade em Função do Aprendizado.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D3</instance>
+				</connect>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D4</instance>
+				</connect>
+			</connects>
+		</scenario>
+		<scenario>
+			<name>Geração de Erros Baseada na Experiência</name>
+			<fileName>Geração de Erros Baseada na Experiência.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D5</instance>
+				</connect>
+			</connects>
+		</scenario>
+		<!-- 
+		<scenario>
+			<name>Regime de Hora Extra</name>
+			<fileName>Regime de Hora Extra.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D6</instance>
+				</connect>
+			</connects>
+		</scenario>
+		<!-- 
+		<scenario>
+			<name>Exaustão</name>
+			<fileName>Exaustão.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>D6</instance>
+				</connect>
+			</connects>
+		</scenario>
+		 -->
+	</scenarios>
+
+
+</metaModelInstance>
+

@@ -1,0 +1,312 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<systemDynamicsModel>
+	<levels></levels>
+	<infiniteLevels></infiniteLevels>
+	<rates></rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>A0</name>
+			<expression>10</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10</m:cn>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>B0</name>
+			<expression>20</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>20</m:cn>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>C0</name>
+			<expression>-30</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>-30</m:cn>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<!-- Calculadas Indiretamente -->
+		<auxiliary>
+			<name>EQ01</name>
+			<expression>EQ01=A0+B0</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:plus />
+						<m:ci>A0</m:ci>
+						<m:ci>B0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ02</name>
+			<expression>EQ02=B0-A0</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:minus />
+						<m:ci>B0</m:ci>
+						<m:ci>A0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ03</name>
+			<expression>EQ03=B0*C0</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:minus />
+						<m:ci>B0</m:ci>
+						<m:ci>C0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ04</name>
+			<expression>EQ04=B0/A0</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>B0</m:ci>
+						<m:ci>A0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ05</name>
+			<expression>EQ05=-A0</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:inverse />
+						<m:ci>A0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>EQ06</name>
+			<expression>EQ06=abs(C0)</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:abs />
+						<m:ci>C0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ07</name>
+			<expression>EQ07=A0^3</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:power />
+						<m:ci>C0</m:ci>
+						<m:cn>3</m:cn>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+		<auxiliary>
+			<name>EQ08</name>
+			<expression>EQ08=sin(C0)</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:sin />
+						<m:ci>C0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>EQ09</name>
+			<expression>EQ08=max(A0,B0)</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:max />
+						<m:ci>A0</m:ci>
+						<m:ci>B0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>EQ10</name>
+			<expression>EQ10=min(A0,B0)</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:min />
+						<m:ci>A0</m:ci>
+						<m:ci>B0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>EQ11</name>
+			<expression>EQ11=rand()</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:rand />
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+		<auxiliary>
+			<name>EQ12</name>
+			<expression>EQ12=randint(A0)</expression>
+			<nexpression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:randint />
+						<m:ci>A0</m:ci>
+					</m:apply>
+				</m:math>
+			</nexpression>
+		</auxiliary>
+
+
+
+	</auxiliaries>
+
+	<informations>
+		<information>
+			<name>A0toEQ01</name>
+			<source>A0</source>
+			<consumer>EQ01</consumer>
+		</information>
+		<information>
+			<name>B0toEQ01</name>
+			<source>B0</source>
+			<consumer>EQ01</consumer>
+		</information>
+
+		<information>
+			<name>A0toEQ02</name>
+			<source>A0</source>
+			<consumer>EQ02</consumer>
+		</information>
+		<information>
+			<name>B0toEQ02</name>
+			<source>B0</source>
+			<consumer>EQ02</consumer>
+		</information>
+
+		<information>
+			<name>A0toEQ03</name>
+			<source>C0</source>
+			<consumer>EQ03</consumer>
+		</information>
+		<information>
+			<name>B0toEQ03</name>
+			<source>B0</source>
+			<consumer>EQ03</consumer>
+		</information>
+
+		<information>
+			<name>A0toEQ04</name>
+			<source>A0</source>
+			<consumer>EQ04</consumer>
+		</information>
+		<information>
+			<name>B0toEQ04</name>
+			<source>B0</source>
+			<consumer>EQ04</consumer>
+		</information>
+		
+		<information>
+			<name>A0toEQ05</name>
+			<source>A0</source>
+			<consumer>EQ05</consumer>
+		</information>
+		
+		<information>
+			<name>C0toEQ06</name>
+			<source>C0</source>
+			<consumer>EQ06</consumer>
+		</information>
+		
+		<information>
+			<name>A0toEQ07</name>
+			<source>A0</source>
+			<consumer>EQ07</consumer>
+		</information>
+		
+		<information>
+			<name>C0toEQ08</name>
+			<source>C0</source>
+			<consumer>EQ08</consumer>
+		</information>
+		
+		<information>
+			<name>A0toEQ09</name>
+			<source>A0</source>
+			<consumer>EQ09</consumer>
+		</information>
+		<information>
+			<name>B0toEQ09</name>
+			<source>B0</source>
+			<consumer>EQ09</consumer>
+		</information>
+
+		<information>
+			<name>A0toEQ10</name>
+			<source>A0</source>
+			<consumer>EQ10</consumer>
+		</information>
+		<information>
+			<name>B0toEQ10</name>
+			<source>B0</source>
+			<consumer>EQ10</consumer>
+		</information>
+		
+		<information>
+			<name>A0toEQ12</name>
+			<source>A0</source>
+			<consumer>EQ12</consumer>
+		</information>
+
+	</informations>
+</systemDynamicsModel>
+

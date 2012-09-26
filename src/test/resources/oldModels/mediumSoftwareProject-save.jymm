@@ -1,0 +1,254 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModel>
+  <name>MyProject</name>
+  <classes>
+    <class>
+      <name>Activity</name>
+      <levels>
+        <finiteLevel>
+          <name>TimeToConclude</name>
+          <initialValue>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>duration</m:ci>
+            </m:math>
+          </initialValue>
+        </finiteLevel>
+        <finiteLevel>
+          <name>ExecutingOrDone</name>
+          <initialValue>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:cn>0.0</m:cn>
+            </m:math>
+          </initialValue>
+        </finiteLevel>
+      </levels>
+      <infiniteLevels />
+      <rates>
+        <rate>
+          <name>ErrorsTransmit</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:if />
+                <m:apply>
+                  <m:gt />
+                  <m:ci>RTExecuting</m:ci>
+                  <m:cn>0.0010</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:divide />
+                  <m:apply>
+                    <m:groupsum />
+                    <m:ci>Income</m:ci>
+                    <m:ci>Errors</m:ci>
+                  </m:apply>
+                  <m:ci>_STEP_TIME_</m:ci>
+                </m:apply>
+                <m:cn>0.0</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+          <to>Outcome.Errors</to>
+        </rate>
+        <rate>
+          <name>Work</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:if />
+                <m:ci>DependOk</m:ci>
+                <m:apply>
+                  <m:inverse />
+                  <m:apply>
+                    <m:min />
+                    <m:apply>
+                      <m:times />
+                      <m:ci>Prod</m:ci>
+                      <m:apply>
+                        <m:divide />
+                        <m:ci>TimeToConclude</m:ci>
+                        <m:ci>_STEP_TIME_</m:ci>
+                      </m:apply>
+                    </m:apply>
+                    <m:ci>Prod</m:ci>
+                  </m:apply>
+                </m:apply>
+                <m:cn>0.0</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+          <to>TimeToConclude</to>
+        </rate>
+        <rate>
+          <name>ErrorsCommitted</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:inverse />
+                <m:apply>
+                  <m:times />
+                  <m:ci>ErrorsPerDay</m:ci>
+                  <m:apply>
+                    <m:divide />
+                    <m:ci>Work</m:ci>
+                    <m:ci>Prod</m:ci>
+                  </m:apply>
+                </m:apply>
+              </m:apply>
+            </m:math>
+          </expression>
+          <to>Outcome.Errors</to>
+        </rate>
+        <rate>
+          <name>RTExecuting</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:if />
+                <m:apply>
+                  <m:and />
+                  <m:apply>
+                    <m:lt />
+                    <m:ci>ExecutingOrDone</m:ci>
+                    <m:cn>0.0010</m:cn>
+                  </m:apply>
+                  <m:ci>DependOk</m:ci>
+                </m:apply>
+                <m:cn>1.0</m:cn>
+                <m:cn>0.0</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+          <to>ExecutingOrDone</to>
+        </rate>
+      </rates>
+      <auxiliaries>
+        <property>
+          <name>duration</name>
+          <value>0.0</value>
+        </property>
+        <auxiliary>
+          <name>ErrorsPerDay</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:cn>5.0</m:cn>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <auxiliary>
+          <name>DependOk</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:lt />
+                <m:apply>
+                  <m:groupsum />
+                  <m:ci>Precedence</m:ci>
+                  <m:ci>TimeToConclude</m:ci>
+                </m:apply>
+                <m:cn>0.0010</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <auxiliary>
+          <name>Prod</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:groupmax />
+                <m:ci>Team</m:ci>
+                <m:ci>Productivity</m:ci>
+              </m:apply>
+            </m:math>
+          </expression>
+        </auxiliary>
+      </auxiliaries>
+      <informations />
+    </class>
+    <class>
+      <name>Artifact</name>
+      <levels>
+        <finiteLevel>
+          <name>Errors</name>
+          <initialValue>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>latent_errors</m:ci>
+            </m:math>
+          </initialValue>
+        </finiteLevel>
+      </levels>
+      <infiniteLevels />
+      <rates />
+      <auxiliaries>
+        <property>
+          <name>latent_errors</name>
+          <value>0.0</value>
+        </property>
+      </auxiliaries>
+      <informations />
+    </class>
+    <class>
+      <name>Developer</name>
+      <levels />
+      <infiniteLevels />
+      <rates />
+      <auxiliaries>
+        <property>
+          <name>experience</name>
+          <value>1.0</value>
+        </property>
+        <auxiliary>
+          <name>Productivity</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>experience</m:ci>
+            </m:math>
+          </expression>
+        </auxiliary>
+      </auxiliaries>
+      <informations />
+    </class>
+  </classes>
+  <relations>
+    <multiRelation>
+      <name>Precedence</name>
+      <source>Activity</source>
+      <target>Activity</target>
+      <targetRole>NextActivities</targetRole>
+    </multiRelation>
+    <singleRelation>
+      <name>Outcome</name>
+      <source>Activity</source>
+      <target>Artifact</target>
+    </singleRelation>
+    <multiRelation>
+      <name>Team</name>
+      <source>Activity</source>
+      <target>Developer</target>
+    </multiRelation>
+    <multiRelation>
+      <name>Income</name>
+      <source>Activity</source>
+      <target>Artifact</target>
+    </multiRelation>
+  </relations>
+</metaModel>
+

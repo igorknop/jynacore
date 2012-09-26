@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel  xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <name>Crescimento dos usuários de um Software sem Concorrência</name>
+  <stocks>
+    <finiteStock>
+      <name>Usuários</name>
+      <initialValue>
+        <m:math>
+          <m:cn>10.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+  </stocks>
+  <infiniteStocks>
+    <infiniteStock>
+      <name>Possíveis Usuários</name>
+    </infiniteStock>
+  </infiniteStocks>
+  <rates>
+    <rate>
+      <name>Adesão</name>
+      <expression>
+        <m:math>
+          <m:apply>
+            <m:times />
+            <m:ci>Taxa de Adesão</m:ci>
+            <m:ci>Usuários</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+      <source>Possíveis Usuários</source>
+      <target>Usuários</target>
+    </rate>
+  </rates>
+  <auxiliaries>
+    <auxiliary>
+      <name>Taxa de Adesão</name>
+      <expression>
+        <m:math>
+          <m:cn>0.05</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+  </auxiliaries>
+  <informations>
+    <information>
+      <name>Taxa de Adesão atual</name>
+      <source>Taxa de Adesão</source>
+      <consumer>Adesão</consumer>
+    </information>
+    <information>
+      <name>Quantidade de Usuários atual</name>
+      <source>Usuários</source>
+      <consumer>Adesão</consumer>
+    </information>
+  </informations>
+</systemDynamicsModel>
+

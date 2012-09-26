@@ -1,0 +1,681 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModel>
+	<name>Projeto de Software</name>
+	<classes>
+		<class>
+			<name>Projeto</name>
+			<levels>
+				<finiteLevel>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+					<name>Dias Corridos</name>
+				</finiteLevel>
+			</levels>
+			<rates>
+				<rate>
+					<name>Em Execução</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:leq />
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Tarefa</m:ci>
+										<m:ci>Tempo de Conclusão</m:ci>
+									</m:apply>
+									<m:cn>0.001</m:cn>
+								</m:apply>
+								<m:cn>0</m:cn>
+								<m:cn>1</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Dias Corridos</to>
+				</rate>
+			</rates>
+			<auxiliaries>
+				<auxiliary>
+					<name>Concluído</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+								<m:apply>
+									<m:groupmin />
+									<m:ci>Tarefa</m:ci>
+									<m:ci>Concluído</m:ci>
+								</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Custo Total</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+									<m:groupsum />
+									<m:ci>Tarefa</m:ci>
+									<m:ci>Custo</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+			</auxiliaries>
+		</class>
+
+
+		<class>
+			<name>Atividade</name>
+			<levels>
+				<finiteLevel>
+					<name>Tempo de Execução</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Tempo Esperado</m:ci>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+				<finiteLevel>
+					<name>Tempo Decorrido</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+				<finiteLevel>
+					<name>Tempo de Conclusão</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+				<finiteLevel>
+					<name>Custo</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+				<finiteLevel>
+					<name>Erros</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+			</levels>
+			<infiniteLevels />
+			<rates>
+				<rate>
+					<name>Taxa de Tempo Decorrido</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Em Execução</m:ci>
+								<m:apply>
+									<m:if />
+									<m:apply>
+										<m:or />
+										<m:apply>
+											<m:gt />
+											<m:ci>Tarefa de Inspeção</m:ci>
+											<m:cn>0.0</m:cn>
+										</m:apply>
+										<m:apply>
+											<m:gt />
+											<m:ci>Tarefa de Testes</m:ci>
+											<m:cn>0.0</m:cn>
+										</m:apply>
+									</m:apply>
+									<m:apply>
+										<m:min />
+										<m:ci>Tempo Restante</m:ci>
+										<m:ci>_TIME_STEP_</m:ci>
+									</m:apply>
+									<m:apply>
+										<m:min />
+										<m:ci>Tempo Restante</m:ci>
+										<m:ci>Produtividade</m:ci>
+									</m:apply>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Tempo Decorrido</to>
+				</rate>
+				<rate>
+					<name>Taxa Tempo de Conclusão</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:and />
+									<m:apply>
+										<m:lt />
+										<m:ci>Tempo de Conclusão</m:ci>
+										<m:ci>0.01</m:ci>
+									</m:apply>
+									<m:apply>
+										<m:lt />
+										<m:apply>
+											<m:times />
+											<m:ci>_TIME_STEP_</m:ci>
+											<m:apply>
+												<m:minus />
+												<m:ci>Tempo Restante</m:ci>
+												<m:ci>Taxa de Tempo Decorrido</m:ci>
+											</m:apply>
+										</m:apply>
+										<m:ci>0.01</m:ci>
+									</m:apply>
+								</m:apply>
+								<m:apply>
+									<m:plus />
+									<m:apply>
+										<m:divide />
+										<m:ci>_TIME_</m:ci>
+										<m:ci>_TIME_STEP_</m:ci>
+									</m:apply>
+									<m:cn>1</m:cn>
+								</m:apply>
+								<m:cn>0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Tempo de Conclusão</to>
+				</rate>
+				<rate>
+					<name>Taxa de Custo</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Em Execução</m:ci>
+								<m:apply>
+									<m:groupsum />
+									<m:ci>Equipe</m:ci>
+									<m:ci>Custo</m:ci>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Custo</to>
+				</rate>
+				<rate>
+					<name>Taxa de Erros</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Em Execução</m:ci>
+								<m:apply>
+									<m:groupsum />
+									<m:ci>Equipe</m:ci>
+									<m:ci>Erros</m:ci>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Erros</to>
+				</rate>
+			</rates>
+			<auxiliaries>
+				<property>
+					<name>Tarefa de Análise</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Tarefa de Arquitetura</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Tarefa de Projeto</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Tarefa de Codificação</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Tarefa de Testes</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Tarefa de Inspeção</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Duração Mínima</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Duração Esperada</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Duração Máxima</name>
+					<value>0</value>
+				</property>
+				<property>
+					<name>Ordem</name>
+					<value>0</value>
+				</property>
+				<auxiliary>
+					<name>Tempo Esperado</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Duração Esperada</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Tempo Mínimo</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Duração Mínima</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Tempo Máximo</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Duração Máxima</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Pré-Concluído</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:and />
+								<m:apply>
+									<m:geq />
+									<m:apply>
+										<m:groupmax />
+										<m:ci>Precedente</m:ci>
+										<m:ci>Pré-Concluído</m:ci>
+									</m:apply>
+									<m:cn>0.0</m:cn>
+								</m:apply>
+								<m:apply>
+									<m:leq />
+									<m:apply>
+										<m:groupmax />
+										<m:ci>Precedente</m:ci>
+										<m:ci>Tempo Restante</m:ci>
+									</m:apply>
+									<m:cn>0.001</m:cn>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Concluído</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:leq />
+								<m:ci>Tempo de Conclusão</m:ci>
+								<m:ci>0.001</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Pronto</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:and />
+								<m:ci>Pré-Concluído</m:ci>
+								<m:apply>
+									<m:not />
+									<m:ci>Concluído</m:ci>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Desenvolvedor Necessário</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Pronto</m:ci>
+								<m:ci>Ordem</m:ci>
+								<m:ci>1000</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Em Execução</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:and />
+								<m:ci>Pronto</m:ci>
+								<m:apply>
+									<m:eq />
+									<m:apply>
+										<m:groupmin />
+										<m:ci>Equipe</m:ci>
+										<m:ci>tarefa Associada</m:ci>
+									</m:apply>
+									<m:ci>Ordem</m:ci>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:times />
+								<m:ci>_TIME_STEP_</m:ci>
+								<m:apply>
+									<m:plus />
+									<m:apply>
+										<m:times />
+										<m:apply>
+											<m:groupmin />
+											<m:ci>Equipe</m:ci>
+											<m:ci>Produtividade em Análise</m:ci>
+										</m:apply>
+										<m:ci>Tarefa de Análise</m:ci>
+									</m:apply>
+									<m:apply>
+										<m:plus />
+										<m:apply>
+											<m:times />
+											<m:apply>
+												<m:groupmin />
+												<m:ci>Equipe</m:ci>
+												<m:ci>Produtividade em Projeto</m:ci>
+											</m:apply>
+											<m:ci>Tarefa de Arquitetura</m:ci>
+										</m:apply>
+										<m:apply>
+											<m:plus />
+											<m:apply>
+												<m:times />
+												<m:apply>
+													<m:groupmin />
+													<m:ci>Equipe</m:ci>
+													<m:ci>Produtividade em Projeto</m:ci>
+												</m:apply>
+												<m:ci>Tarefa de Projeto</m:ci>
+											</m:apply>
+											<m:apply>
+												<m:plus />
+												<m:apply>
+													<m:times />
+													<m:apply>
+														<m:groupmin />
+														<m:ci>Equipe</m:ci>
+														<m:ci>Produtividade em Codificação</m:ci>
+													</m:apply>
+													<m:ci>Tarefa de Codificação</m:ci>
+												</m:apply>
+												<m:apply>
+													<m:plus />
+													<m:apply>
+														<m:times />
+														<m:apply>
+															<m:groupmin />
+															<m:ci>Equipe</m:ci>
+															<m:ci>Produtividade em Testes</m:ci>
+														</m:apply>
+														<m:ci>Tarefa de Testes</m:ci>
+													</m:apply>
+													<m:apply>
+														<m:times />
+														<m:apply>
+															<m:groupmin />
+															<m:ci>Equipe</m:ci>
+															<m:ci>Produtividade em Inspeção</m:ci>
+														</m:apply>
+														<m:ci>Tarefa de Inspeção</m:ci>
+													</m:apply>
+												</m:apply>
+											</m:apply>
+										</m:apply>
+									</m:apply>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Tempo Restante</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:max />
+								<m:apply>
+									<m:minus />
+									<m:ci>Tempo de Execução</m:ci>
+									<m:ci>Tempo Decorrido</m:ci>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produção</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:max />
+								<m:apply>
+									<m:min />
+									<m:ci>Tempo de Conclusão</m:ci>
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Equipe</m:ci>
+										<m:ci>Produtividade</m:ci>
+									</m:apply>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+			</auxiliaries>
+			<informations />
+		</class>
+		<class>
+			<name>Desenvolvedor</name>
+			<levels />
+			<infiniteLevels />
+			<rates />
+			<auxiliaries>
+				<property>
+					<name>Experiência em Análise</name>
+					<value>0.0</value>
+				</property>
+				<property>
+					<name>Experiência em Projeto</name>
+					<value>0.0</value>
+				</property>
+				<property>
+					<name>Experiência em Codificação</name>
+					<value>0.0</value>
+				</property>
+				<property>
+					<name>Experiência em Testes</name>
+					<value>1.0</value>
+				</property>
+				<property>
+					<name>Experiência em Inspeção</name>
+					<value>1.0</value>
+				</property>
+				<property>
+					<name>Custo por Hora</name>
+					<value>1.0</value>
+				</property>
+				<auxiliary>
+					<name>Tarefa Associada</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:groupmin />
+								<m:ci>Equipe</m:ci>
+								<m:ci>Desenvolvedor Necessário</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Custo</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:times />
+								<m:ci>Custo por Hora</m:ci>
+								<m:cn>8</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>1.0</m:cn>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade em Análise</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Produtividade</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade em Projeto</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Produtividade</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade em Codificação</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Produtividade</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade em Testes</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Produtividade</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Produtividade em Inspeção</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Produtividade</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Taxa de Geração de Erros</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>1.0</m:cn>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Taxa de Geração de Erros em Análise</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Taxa de Geração de Erros</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Taxa de Geração de Erros em Projeto</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Taxa de Geração de Erros</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Taxa de Geração de Erros em Codificação</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>Taxa de Geração de Erros</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+			</auxiliaries>
+			<informations />
+		</class>
+	</classes>
+	<relations>
+		<singleRelation>
+			<name>Equipe</name>
+			<source>Atividade</source>
+			<target>Desenvolvedor</target>
+			<targetRole>Equipe</targetRole>
+		</singleRelation>
+		<multiRelation>
+			<name>Precedente</name>
+			<source>Atividade</source>
+			<target>Atividade</target>
+			<targetRole>Sucessor</targetRole>
+		</multiRelation>
+		<multiRelation>
+			<name>Tarefa</name>
+			<source>Projeto</source>
+			<target>Atividade</target>
+		</multiRelation>
+	</relations>
+</metaModel>
+
