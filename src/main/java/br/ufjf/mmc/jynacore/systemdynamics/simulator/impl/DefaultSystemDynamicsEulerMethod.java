@@ -17,10 +17,6 @@
  ******************************************************************************/
 package br.ufjf.mmc.jynacore.systemdynamics.simulator.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import br.ufjf.mmc.jynacore.JynaEvaluated;
 import br.ufjf.mmc.jynacore.expression.Expression;
 import br.ufjf.mmc.jynacore.expression.NameOperator;
@@ -33,6 +29,9 @@ import br.ufjf.mmc.jynacore.systemdynamics.SystemDynamicsModel;
 import br.ufjf.mmc.jynacore.systemdynamics.Variable;
 import br.ufjf.mmc.jynacore.systemdynamics.impl.DefaultVariable;
 import br.ufjf.mmc.jynacore.systemdynamics.simulator.SystemDynamicsSimulationMethod;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class DefaultSystemDynamicsEulerMethod implements
 		SystemDynamicsSimulationMethod {
@@ -92,13 +91,14 @@ public class DefaultSystemDynamicsEulerMethod implements
 		// Calculates all rates values
 		for (String key : rates.keySet()) {
 			Rate rate = rates.get(key);
-			if (rate instanceof JynaEvaluated)
-				rate.setValue((Double) rate.getExpression().evaluate());
+			if (rate instanceof JynaEvaluated) {
+            rate.setValue((Double) rate.getExpression().evaluate());
+         }
 		}
 
 		// Calculates all rates effects
-		for (String key : rates.keySet()) {
-			Rate rate = rates.get(key);
+		for (Entry<String,Rate> entry : rates.entrySet()) {
+			Rate rate = entry.getValue();
 			if (rate.getFromLevel() instanceof FiniteStock) {
 				FiniteStock flevel = (FiniteStock) rate.getFromLevel();
 				flevel.setValue(flevel.getValue() - rate.getValue()
@@ -196,18 +196,18 @@ public class DefaultSystemDynamicsEulerMethod implements
 	}
 
 	private void name2ref(Expression expr) {
-		if (expr == null)
-			return;
+		if (expr == null) {
+      }
 		else if (expr.getOperator() instanceof NameOperator) {
 			if (expr.getValue().equals("_TIME_")) {
 				expr.setMiddleOperand(new DefaultReferenceExpression(_TIME_));
 			} else if (expr.getValue().equals("_TIME_STEP_")) {
 				expr.setMiddleOperand(new DefaultReferenceExpression(
 						_TIME_STEP_));
-			} else
-				expr.setMiddleOperand(new DefaultReferenceExpression(model
-						.get((String) expr.getValue())));
-			return;
+			} else {
+            expr.setMiddleOperand(new DefaultReferenceExpression(model
+                  .get((String) expr.getValue())));
+         }
 		} else {
 			name2ref(expr.getLeftOperand());
 			name2ref(expr.getMiddleOperand());
