@@ -24,6 +24,7 @@ import org.junit.Test;
 
 import br.ufjf.mmc.jynacore.JynaEvaluated;
 import br.ufjf.mmc.jynacore.expression.impl.DefaultNameExpression;
+import br.ufjf.mmc.jynacore.expression.impl.DefaultNumberConstantExpression;
 import br.ufjf.mmc.jynacore.systemdynamics.FiniteStock;
 import br.ufjf.mmc.jynacore.systemdynamics.InfiniteStock;
 import br.ufjf.mmc.jynacore.systemdynamics.Information;
@@ -71,7 +72,8 @@ public class EulerMethodTest {
 		infLevel = new DefaultInfiniteStock();
 
 		cteRate = new DefaultRate();
-		cteRate.setValue(3.0);
+      cteRate.setExpression(new DefaultNumberConstantExpression(3.0));
+		//cteRate.setValue(3.0);
 		cteRate.setSourceAndTarget(infLevel, finLevel);
 
 		model1.put("Stock", finLevel);
@@ -89,7 +91,8 @@ public class EulerMethodTest {
 		finLevel3.setInitialValue(0.0);
 
 		cteRate2 = new DefaultRate();
-		cteRate2.setValue(3.0);
+      cteRate2.setExpression(new DefaultNumberConstantExpression(3.0));
+		//cteRate2.setValue(3.0);
 		cteRate2.setSourceAndTarget(finLevel2, finLevel3);
 
 		model2.put("Level2", finLevel2);
@@ -134,10 +137,10 @@ public class EulerMethodTest {
 		method.setStepSize(1.0);
 		method.reset();
 		method.step();
-		assertEquals((Integer) 3, ((FiniteStock) method.getModel().get("Stock")).getValue());
+		assertEquals((Double)3.0, ((FiniteStock) method.getModel().get("Stock")).getValue());
 		method.step();
 		method.step();
-		assertEquals((Integer) 9,((FiniteStock) method.getModel().get("Stock")).getValue());
+		assertEquals((Double) 9.0,((FiniteStock) method.getModel().get("Stock")).getValue());
 
 	
 	}
@@ -164,18 +167,18 @@ public class EulerMethodTest {
 		method3.reset();
 		method3.step();
 		assertEquals(
-				(Integer) 99,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 99.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 2,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 2.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 		method3.step();
 		assertEquals(
-				(Integer) 97,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 97.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 4,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 4.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 		method3.step();
 		assertEquals(
-				(Integer) 93,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 93.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 8,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 8.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 	}
 }
