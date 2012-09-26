@@ -78,6 +78,7 @@ public class DoubleVariableTest {
 		var1.setExpression(expr);
 		Information inf1 = new DefaultInformation(level1, var1);
 		inf1.setName("inf1");
+      level1.setValue((Double) level1.getInitialValue().evaluate());
 		Double r = (Double) var1.getExpression().evaluate();
 //		assertEquals(5.0, var1.getValue());
 		assertEquals((Double) 5.0, r);
