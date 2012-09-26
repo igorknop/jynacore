@@ -12,7 +12,7 @@
   </stocks>
   <infiniteStocks>
     <infiniteStock>
-      <name>PopulationSource</name>
+      <name>PopulatonSource</name>
     </infiniteStock>
   </infiniteStocks>
   <rates>
@@ -27,7 +27,7 @@
           </m:apply>
         </m:math>
       </expression>
-      <source>PopulationSource</source>
+      <source>PopulatonSource</source>
       <target>Population</target>
     </rate>
   </rates>

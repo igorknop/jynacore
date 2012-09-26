@@ -52,7 +52,7 @@ public class SystemDynamicsModelStorerJDOMTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testdir = new File("src\\test\\resources");
+		testdir = new File("src/test/resources");
 	}
 
 	/**
@@ -65,17 +65,18 @@ public class SystemDynamicsModelStorerJDOMTest {
 	public final void testLoadFromFile() throws Exception {
 		SystemDynamicsModelStorer storer = new DefaultSystemDynamicsModelStorerJDOM();
 		SystemDynamicsModel model;
-		File fileName;
-		fileName = new File(testdir, "exponencial.jyna");
+		//File fileName;
+      System.out.println(testdir.toString());
+		fileName = new File(testdir, "/oldModels/exponencial.jyna");
 		model = storer.loadFromFile(fileName);
 		
 		assertEquals(1, model.getFiniteLevels().size());
 		assertNotNull(model.get("Population"));
-		assertEquals(1.0,((FiniteStock)model.get("Population")).getInitialValue());
-		assertEquals(1.0,((FiniteStock)model.get("Population")).getInitialValue().getValue());
+		assertNotNull(((FiniteStock)model.get("Population")).getInitialValue());
+		assertEquals(1.0,((FiniteStock)model.get("Population")).getInitialValue().evaluate());
 		
 		assertEquals(1, model.getInfiniteLevels().size());
-		assertNotNull(model.get("PopulatonSource"));
+		assertNotNull(model.get("PopulationSource"));
 
 		assertEquals(1, model.getRates().size());
 		assertNotNull(model.get("GrowthRate"));
@@ -84,7 +85,6 @@ public class SystemDynamicsModelStorerJDOMTest {
 		
 
 		assertNotNull(model.get("GrowthFactor"));
-		assertNotNull(((Variable)model.get("GrowthFactor")).getExpression());
 		assertNotNull(((Variable)model.get("GrowthFactor")).getExpression());
 
 		assertNotNull(model.get("CurrentFactor"));
@@ -105,7 +105,7 @@ public class SystemDynamicsModelStorerJDOMTest {
 		SystemDynamicsModel model;
 		File fileName;
 
-		fileName = new File(testdir, "oscilatory.jyna");
+		fileName = new File(testdir, "/oldModels/oscilatory.jyna");
 		model = storer.loadFromFile(fileName);
 		assertEquals(2, model.getFiniteLevels().size());
 		assertEquals(2, model.getInfiniteLevels().size());
@@ -140,7 +140,7 @@ public class SystemDynamicsModelStorerJDOMTest {
 	public final void testSaveToFileOsc() throws Exception {
 		OscilatorySystem model = new OscilatorySystem();
 		SystemDynamicsModelStorer storer = new DefaultSystemDynamicsModelStorerJDOM();
-		fileName = new File(testdir, "oscilatory-save.jyna");
+		fileName = new File(testdir, "/oldModels/oscilatory-save.jyna");
 		storer.saveToFile(model, fileName);
 
 	}
@@ -157,7 +157,7 @@ public class SystemDynamicsModelStorerJDOMTest {
 		SystemDynamicsModel model;
 		File fileName;
 
-		fileName = new File(testdir, "fullOscilatory.jyna");
+		fileName = new File(testdir, "/sd/fullOscilatory.jyna");
 		model = storer.loadFromFile(fileName);
 		assertEquals(2, model.getFiniteLevels().size());
 		assertEquals(2, model.getInfiniteLevels().size());
