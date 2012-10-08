@@ -38,6 +38,7 @@ import br.ufjf.mmc.jynacore.metamodel.instance.ClassInstanceRate;
 import br.ufjf.mmc.jynacore.metamodel.instance.ClassInstanceSingleRelation;
 import br.ufjf.mmc.jynacore.metamodel.instance.ClassInstanceStock;
 import br.ufjf.mmc.jynacore.metamodel.instance.MetaModelInstance;
+import br.ufjf.mmc.jynacore.metamodel.instance.impl.DefaultClassInstanceProperty;
 import br.ufjf.mmc.jynacore.metamodel.simulator.MetaModelInstanceSimulationMethod;
 import br.ufjf.mmc.jynacore.systemdynamics.Variable;
 import br.ufjf.mmc.jynacore.systemdynamics.impl.DefaultVariable;
@@ -60,8 +61,8 @@ public class DefaultMetaModelInstanceEulerMethod implements
 	private MetaModelInstance modelInstance;
 	private Map<String, ClassInstanceSingleRelation> singleRelations;
 	private Map<String, ClassInstanceMultiRelation> multiRelations;
-	private Variable _TIME_;
-	private Variable _TIME_STEP_;
+	private ClassInstanceProperty _TIME_;
+	private ClassInstanceProperty _TIME_STEP_;
 
 	/**
 	 * 
@@ -76,12 +77,12 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		currentTime = 0.0;
 		currentStep = 0;
 		initialTime = 0.0;
-		_TIME_ = new DefaultVariable();
+		_TIME_ = new DefaultClassInstanceProperty();
 		_TIME_.setName("_TIME_");
-		_TIME_.setExpression(new DefaultNumberConstantExpression(currentTime));
-		_TIME_STEP_ = new DefaultVariable();
+		_TIME_.setValue(currentTime);
+		_TIME_STEP_ = new DefaultClassInstanceProperty();
 		_TIME_STEP_.setName("_TIME_STEP_");
-		_TIME_STEP_.setExpression(new DefaultNumberConstantExpression(stepSize));
+		_TIME_STEP_.setValue(stepSize);
 	}
 
 	/*
@@ -152,7 +153,8 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		}
 		currentStep = 0;
 		currentTime = initialTime;
-		_TIME_.getExpression().setValue(currentTime);
+		_TIME_.setValue(currentTime);
+		_TIME_STEP_.setValue(stepSize);
 	}
 
 	/*
@@ -180,10 +182,12 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		properties.clear();
 		singleRelations.clear();
 		multiRelations.clear();
+      modelInstance.setTimeStepConstant(_TIME_);
+      modelInstance.setTimeConstant(_TIME_STEP_);
 		for (Entry<String, ClassInstance> ciEntry : modelInstance
 				.getClassInstances().entrySet()) {
 			String classInstanceName = ciEntry.getKey();
-			ClassInstance classInstance = ciEntry.getValue();
+			ClassInstance classInstance = ciEntry.getValue();         
 			for (Entry<String, ClassInstanceItem> ciItem : classInstance
 					.entrySet()) {
 				if (ciItem.getValue() instanceof ClassInstanceStock) {
@@ -282,7 +286,7 @@ public class DefaultMetaModelInstanceEulerMethod implements
 	@Override
 	public void setStepSize(Double newStepSize) {
 		stepSize = newStepSize;
-		_TIME_STEP_.getExpression().setValue(stepSize);
+		_TIME_STEP_.setValue(stepSize);
 	}
 
 	/*
@@ -292,6 +296,9 @@ public class DefaultMetaModelInstanceEulerMethod implements
 	 */
 	@Override
 	public void step() throws Exception {
+		currentTime += stepSize;
+		_TIME_STEP_.setValue(stepSize);
+		_TIME_.setValue(currentTime);
 		for (Entry<String, ClassInstanceAuxiliary> entry : auxiliaries.entrySet()) {
 			ClassInstanceAuxiliary proc = entry.getValue();
 			proc.setValue(null);
@@ -330,8 +337,6 @@ public class DefaultMetaModelInstanceEulerMethod implements
 			}
 
 		}
-		currentTime += stepSize;
-		_TIME_.getExpression().setValue(currentTime);
 		currentStep++;
 	}
 

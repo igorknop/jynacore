@@ -48,7 +48,7 @@ import br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceSim
 public class DefaultMetaModelInstanceSimulatorTest {
 
 	private MetaModelInstance metaModelInstance;
-	private final File testdir = new File("src\\test\\resources");
+	private final File testdir = new File("src/test/resources");
 
 	/**
 	 * @throws java.lang.Exception
@@ -68,7 +68,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 	public final void testReset() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
 		metaModelInstance = storer.loadFromFile(new File(testdir,
-				"simpleSoftwareProjectInstance.jymmi"));
+				"oldModels/simpleSoftwareProjectInstance.jymmi"));
 		MetaModelInstanceSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		JynaSimulationData data = new DefaultSimulationData();
 		simulator.setSimulationData(data);
@@ -101,7 +101,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 	public final void testRunSimple() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
 		metaModelInstance = storer.loadFromFile(new File(testdir,
-				"simpleSoftwareProjectInstance.jymmi"));
+				"oldModels/simpleSoftwareProjectInstance.jymmi"));
 		// metaModelInstance = new SimpleSoftwareProjectInstance();
 		MetaModelInstanceSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		JynaSimulationData data = new DefaultSimulationData();
@@ -137,7 +137,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 	public final void testRunMedium() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
 		metaModelInstance = storer.loadFromFile(new File(testdir,
-				"mediumSoftwareProjectInstance.jymmi"));
+				"oldModels/mediumSoftwareProjectInstance.jymmi"));
 		// metaModelInstance = new SimpleSoftwareProjectInstance();
 		MetaModelInstanceSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		JynaSimulationData data = new DefaultSimulationData();

@@ -39,7 +39,7 @@ import br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceSim
  */
 public class DefaultMetaModelInstanceEulerMethodTest {
 
-	private final File testdir = new File("src\\test\\resources");
+	private final File testdir = new File("src/test/resources");
 
 	/**
 	 * @throws java.lang.Exception
@@ -55,7 +55,7 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 	@Test
 	public final void testResetSimple() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		JynaModel  modelInstance = storer.load(fileName.toURI());
 		JynaSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		simulator.setModel((JynaSimulableModel) modelInstance);
@@ -70,7 +70,7 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 	@Test
 	public final void testResetMedium() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		JynaModel  modelInstance = storer.load(fileName.toURI());
 		JynaSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		simulator.setModel((JynaSimulableModel) modelInstance);
@@ -86,7 +86,7 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 	@Test
 	public final void testStepSimple() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		JynaModel  modelInstance = storer.load(fileName.toURI());
 		JynaSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		simulator.setModel((JynaSimulableModel) modelInstance);
@@ -101,7 +101,7 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 	@Test
 	public final void testStepMedium() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		JynaModel  modelInstance = storer.load(fileName.toURI());
 		JynaSimulation simulator = new DefaultMetaModelInstanceSimulation();
 		simulator.setModel((JynaSimulableModel) modelInstance);

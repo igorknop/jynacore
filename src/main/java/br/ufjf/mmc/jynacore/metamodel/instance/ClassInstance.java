@@ -50,5 +50,5 @@ public interface ClassInstance extends Map<String, ClassInstanceItem>, JynaItem 
 	
 	void setScenarioConnection(String scenarioName, String connectionName) throws MetaModelInstanceException, Exception;
 	List<MetaModelScenario> getConnectedScenarios();
-	
+
 }

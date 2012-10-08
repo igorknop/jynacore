@@ -65,7 +65,7 @@ public class EulerMethod2Test {
 		setUpModel1();
 		setUpModel2();
 		setUpModel3();
-		testdir = new File("src\\test\\resources");
+		testdir = new File("src/test/resources");
 	}
 
 
@@ -148,10 +148,10 @@ public class EulerMethod2Test {
 		method.setStepSize(1.0);
 		method.reset();
 		method.step();
-		assertEquals((Integer) 3, ((FiniteStock) method.getModel().get("Stock")).getValue());
+		assertEquals((Double) 3.0, ((FiniteStock) method.getModel().get("Stock")).getValue());
 		method.step();
 		method.step();
-		assertEquals((Integer) 9,((FiniteStock) method.getModel().get("Stock")).getValue());
+		assertEquals((Double) 9.0,((FiniteStock) method.getModel().get("Stock")).getValue());
 
 	
 	}
@@ -178,19 +178,19 @@ public class EulerMethod2Test {
 		method3.reset();
 		method3.step();
 		assertEquals(
-				(Integer) 99,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 99.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 2,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 2.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 		method3.step();
 		assertEquals(
-				(Integer) 97,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 97.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 4,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 4.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 		method3.step();
 		assertEquals(
-				(Integer) 93,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
+				(Double) 93.0,( (FiniteStock) method3.getModel().get("Level4")).getValue());	
 		assertEquals(
-				(Integer) 8,( (FiniteStock) method3.getModel().get("Level5")).getValue());
+				(Double) 8.0,( (FiniteStock) method3.getModel().get("Level5")).getValue());
 	}
 
 	@Test
@@ -209,7 +209,7 @@ public class EulerMethod2Test {
 		SystemDynamicsModelStorer storer = new DefaultSystemDynamicsModelStorerJDOM();
 //		SystemDynamicsModel model;
 		File fileName;
-		fileName = new File(testdir, "exponencial.jyna");
+		fileName = new File(testdir, "oldModels/exponencial.jyna");
 		model4 = storer.loadFromFile(fileName);
 		SystemDynamicsSimulationMethod method3 = new DefaultSystemDynamicsEulerMethod();
 		method3.setModel(model4);

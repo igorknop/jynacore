@@ -76,49 +76,49 @@ public class OscilatorySystemTest {
 		simulator.getProfile().setTimeSteps(10);
 		simulator.run();
 		assertEquals((Double) 10.0, simulator.getTime());
-		assertEquals((Double) 0.57079, ((InformationSource) model.get("X"))
-				.getValue());
+		assert(Math.abs(0.57079 - ((InformationSource) model.get("X"))
+				.getValue())<0.0001);
 		simulator.getProfile().setTimeSteps(10);
 		simulator.run();
 		assertEquals((Double) 20.0, simulator.getTime());
-		assertEquals((Double) (-0.453019), ((InformationSource) model.get("X"))
-				.getValue());
+		assert(Math.abs(-0.453019-((InformationSource) model.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model.get("X"))
 				.getValue());
 		
 		simulator.getProfile().setTimeSteps(30);
 		simulator.run();
 		assertEquals((Double) 50.0, simulator.getTime());
-		assertEquals((Double) 0.343355, ((InformationSource) model.get("X"))
-				.getValue());
+		assert(Math.abs(0.343355- ((InformationSource) model.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model.get("X"))
 				.getValue());
 		simulator.getProfile().setTimeSteps(50);
 		simulator.run();
 		assertEquals((Double) 100.0, simulator.getTime());
-		assertEquals((Double) (-1.40885), ((InformationSource) model.get("X"))
-				.getValue());
+		assert(Math.abs(-1.40885- ((InformationSource) model.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model.get("X"))
 				.getValue());
 		
-		JFreeChart chart = ChartFactory.createXYLineChart(
-				"Modelo Oscilat�rio", // chart title
-				"time", // x axis label
-				"value", // y axis label
-				JFreeChartDataConverter.toXYDataSet(data), // data
-				PlotOrientation.VERTICAL,
-				true, // include legend
-				true, // tooltips
-				false // urls
-		);
-		JFrame frame = new JFrame();
-		frame.add(new ChartPanel( chart));
-		frame.setPreferredSize(new Dimension(640,480));
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		System.out.println();
+//		JFreeChart chart = ChartFactory.createXYLineChart(
+//				"Modelo Oscilat�rio", // chart title
+//				"time", // x axis label
+//				"value", // y axis label
+//				JFreeChartDataConverter.toXYDataSet(data), // data
+//				PlotOrientation.VERTICAL,
+//				true, // include legend
+//				true, // tooltips
+//				false // urls
+//		);
+//		JFrame frame = new JFrame();
+//		frame.add(new ChartPanel( chart));
+//		frame.setPreferredSize(new Dimension(640,480));
+//		frame.pack();
+//		frame.setLocationRelativeTo(null);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		System.out.println();
 	}
 	@Test
 	public final void testOscilatorySystemFromLoad() throws Exception {
@@ -126,13 +126,15 @@ public class OscilatorySystemTest {
 		SystemDynamicsModelStorer storer = new DefaultSystemDynamicsModelStorerJDOM();
 		SystemDynamicsModel model2;
 		File fileName;
-		File testdir = new File("src\\test\\resources");
+		File testdir = new File("src/test/resources");
 		fileName = new File(testdir, "oscilatory-save.jyna");
 		model2 = storer.loadFromFile(fileName);
 
 
 		SystemDynamicsSimulation simulator = new DefaultSystemDynamicsSimulation();
 		SystemDynamicsSimulationMethod method = new DefaultSystemDynamicsEulerMethod();
+      DefaultSimulationProfile profile = new DefaultSimulationProfile();
+      simulator.setProfile(profile);
 		simulator.getProfile().setInitialTime(0.0);
 		simulator.getProfile().setTimeInterval(1.0);
 		simulator.setMethod(method);
@@ -149,49 +151,49 @@ public class OscilatorySystemTest {
 		simulator.getProfile().setTimeSteps(10);
 		simulator.run();
 		assertEquals((Double) 10.0, 		simulator.getTime());
-		assertEquals((Double) 0.57079, ((InformationSource) model2.get("X"))
-				.getValue());
+		assert(Math.abs(0.57079 - ((InformationSource) model2.get("X"))
+				.getValue())<0.0001);
 		simulator.getProfile().setTimeSteps(10);
 		simulator.run();
 		assertEquals((Double) 20.0, simulator.getTime());
-		assertEquals((Double) (-0.453019), ((InformationSource) model2.get("X"))
-				.getValue());
+		assert(Math.abs(-0.453019-((InformationSource) model2.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model2.get("X"))
 				.getValue());
 		
 		simulator.getProfile().setTimeSteps(30);
 		simulator.run();
 		assertEquals((Double) 50.0, simulator.getTime());
-		assertEquals((Double) 0.343355, ((InformationSource) model2.get("X"))
-				.getValue());
+		assert(Math.abs(0.343355- ((InformationSource) model2.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model2.get("X"))
 				.getValue());
 		simulator.getProfile().setTimeSteps(50);
 		simulator.run();
 		assertEquals((Double) 100.0, simulator.getTime());
-		assertEquals((Double) (-1.40885), ((InformationSource) model2.get("X"))
-				.getValue());
+		assert(Math.abs(-1.40885- ((InformationSource) model2.get("X"))
+				.getValue())<0.001);
 		System.out.println(((InformationSource) model2.get("X"))
 				.getValue());
 		
-		JFreeChart chart = ChartFactory.createXYLineChart(
-				"Modelo Oscilat�rio", // chart title
-				"time", // x axis label
-				"value", // y axis label
-				JFreeChartDataConverter.toXYDataSet(data), // data
-				PlotOrientation.VERTICAL,
-				true, // include legend
-				true, // tooltips
-				false // urls
-		);
-		JFrame frame = new JFrame();
-		frame.add(new ChartPanel( chart));
-		frame.setPreferredSize(new Dimension(640,480));
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		System.out.println();
+//		JFreeChart chart = ChartFactory.createXYLineChart(
+//				"Modelo Oscilat�rio", // chart title
+//				"time", // x axis label
+//				"value", // y axis label
+//				JFreeChartDataConverter.toXYDataSet(data), // data
+//				PlotOrientation.VERTICAL,
+//				true, // include legend
+//				true, // tooltips
+//				false // urls
+//		);
+//		JFrame frame = new JFrame();
+//		frame.add(new ChartPanel( chart));
+//		frame.setPreferredSize(new Dimension(640,480));
+//		frame.pack();
+//		frame.setLocationRelativeTo(null);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		System.out.println();
 	}
 
 }
