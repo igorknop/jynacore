@@ -37,7 +37,9 @@ import static org.junit.Assert.*;
 public class SystemConstantsTest {
    private static final String cteDtName = "DT";
    private static final String cteTimeName = "TIME";
+   private static final String cteStepName = "STEP";
    private static final String TIME_STEP = "_TIME_STEP_";
+   private static final String STEP = "_STEP_";
    public static final String TIME = "_TIME_";
 
    public SystemConstantsTest() {
@@ -83,9 +85,16 @@ public class SystemConstantsTest {
       mmAuxTime.setExpression(expression2);
       mmClass.put(mmAuxTime);
 
-      assertEquals(2, mmClass.size());
+      MetaModelClassAuxiliary mmAuxStep = new DefaultMetaModelClassAuxiliary();
+      mmAuxStep.setName(cteStepName);
+      Expression expression3 = new DefaultNameExpression(STEP);
+      mmAuxStep.setExpression(expression3);
+      mmClass.put(mmAuxStep);
+
+      assertEquals(3, mmClass.size());
       assertTrue(mmClass.containsKey(cteTimeName));
       assertTrue(mmClass.containsKey(cteDtName));
+      assertTrue(mmClass.containsKey(cteStepName));
 
       metaModel.put(mmClass);
 
@@ -95,7 +104,7 @@ public class SystemConstantsTest {
 
       MetaModelInstanceSimulation simulator = new DefaultMetaModelInstanceSimulation();
       JynaSimulationProfile profile = new DefaultSimulationProfile();
-      profile.setTimeLimits(0.0, 100.0, 1.0);
+      profile.setTimeLimits(0.0, 100.0, 0.5);
       simulator.setProfile(profile);
       MetaModelInstanceSimulationMethod method = new DefaultMetaModelInstanceEulerMethod();
       simulator.setMethod(method);
@@ -104,28 +113,32 @@ public class SystemConstantsTest {
       simulator.setSimulationData(data);
       data.add((JynaValued) mmInstance.getClassInstances().get("TestInstance").get(cteDtName));
       data.add((JynaValued) mmInstance.getClassInstances().get("TestInstance").get(cteTimeName));
+      data.add((JynaValued) mmInstance.getClassInstances().get("TestInstance").get(cteStepName));
 
-      assertEquals(2, (long) data.getWatchedCount());
+      assertEquals(3, (long) data.getWatchedCount());
 
       simulator.reset();
 
       simulator.register();
-      assertEquals(0.0, (Double) data.getTime(0), 0.001);
-      assertEquals(1.0, (Double) data.getValue(0, 0), 0.001);
+      assertEquals(0.0, (Double)     data.getTime(0), 0.001);
+      assertEquals(0.5, (Double) data.getValue(0, 0), 0.001);
       assertEquals(0.0, (Double) data.getValue(1, 0), 0.001);
+      assertEquals(0.0, (Double) data.getValue(2, 0), 0.001);
 
       simulator.step();
       simulator.register();
 
-      assertEquals(1.0, (Double) data.getTime(1), 0.001);
-      assertEquals(1.0, (Double) data.getValue(0, 1), 0.001);
-      assertEquals(1.0, (Double) data.getValue(1, 1), 0.001);
+      assertEquals(0.5,     (Double) data.getTime(1), 0.001);
+      assertEquals(0.5, (Double) data.getValue(0, 1), 0.001);
+      assertEquals(0.5, (Double) data.getValue(1, 1), 0.001);
+      assertEquals(1.0, (Double) data.getValue(2, 1), 0.001);
 
       simulator.step();
       simulator.register();
 
-      assertEquals(2.0, (Double)     data.getTime(2), 0.001);
-      assertEquals(1.0, (Double) data.getValue(0, 2), 0.001);
-      assertEquals(2.0, (Double) data.getValue(1, 2), 0.001);
+      assertEquals(1.0, (Double)     data.getTime(2), 0.001);
+      assertEquals(0.5, (Double) data.getValue(0, 2), 0.001);
+      assertEquals(1.0, (Double) data.getValue(1, 2), 0.001);
+      assertEquals(2.0, (Double) data.getValue(2, 2), 0.001);
    }
 }

@@ -63,6 +63,7 @@ public class DefaultMetaModelInstanceEulerMethod implements
 	private Map<String, ClassInstanceMultiRelation> multiRelations;
 	private ClassInstanceProperty _TIME_;
 	private ClassInstanceProperty _TIME_STEP_;
+	private ClassInstanceProperty _STEP_;
 
 	/**
 	 * 
@@ -83,6 +84,9 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		_TIME_STEP_ = new DefaultClassInstanceProperty();
 		_TIME_STEP_.setName("_TIME_STEP_");
 		_TIME_STEP_.setValue(stepSize);
+		_STEP_ = new DefaultClassInstanceProperty();
+		_STEP_.setName("_STEP_");
+		_STEP_.setValue((double) currentStep);
 	}
 
 	/*
@@ -155,6 +159,7 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		currentTime = initialTime;
 		_TIME_.setValue(currentTime);
 		_TIME_STEP_.setValue(stepSize);
+		_STEP_.setValue((double)currentStep);
 	}
 
 	/*
@@ -184,6 +189,7 @@ public class DefaultMetaModelInstanceEulerMethod implements
 		multiRelations.clear();
       modelInstance.setTimeStepConstant(_TIME_);
       modelInstance.setTimeConstant(_TIME_STEP_);
+      modelInstance.setStepConstant(_STEP_);
 		for (Entry<String, ClassInstance> ciEntry : modelInstance
 				.getClassInstances().entrySet()) {
 			String classInstanceName = ciEntry.getKey();
@@ -297,8 +303,10 @@ public class DefaultMetaModelInstanceEulerMethod implements
 	@Override
 	public void step() throws Exception {
 		currentTime += stepSize;
+		currentStep++;
 		_TIME_STEP_.setValue(stepSize);
 		_TIME_.setValue(currentTime);
+		_STEP_.setValue((double) currentStep);
 		for (Entry<String, ClassInstanceAuxiliary> entry : auxiliaries.entrySet()) {
 			ClassInstanceAuxiliary proc = entry.getValue();
 			proc.setValue(null);
@@ -337,7 +345,6 @@ public class DefaultMetaModelInstanceEulerMethod implements
 			}
 
 		}
-		currentStep++;
 	}
 
 }

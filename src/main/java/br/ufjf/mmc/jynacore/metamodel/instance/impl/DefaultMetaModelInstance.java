@@ -60,14 +60,16 @@ public class DefaultMetaModelInstance implements MetaModelInstance {
 
    public static final String _TIME_ = "_TIME_";
    public static final String _TIME_STEP_ = "_TIME_STEP_";
+   public static final String _STEP_ = "_STEP_";
    private Map<String, ClassInstance> classInstances;
    private String name;
    private MetaModel metaModel;
    private ClassInstanceProperty stepTime;
    private ClassInstanceProperty currentTime;
-   private String metaModelFileName;
+   private ClassInstanceProperty currentStep;
+private String metaModelFileName;
    private List<MetaModelInstanceScenarioConnect> scenariosConnects;
-
+   
    public DefaultMetaModelInstance() {
       classInstances = new HashMap<String, ClassInstance>();
 //		stepTime = new DefaultClassInstanceProperty();
@@ -232,6 +234,11 @@ public class DefaultMetaModelInstance implements MetaModelInstance {
                        stepTime);
                expression.setMiddleOperand(refExpr);
                return;
+            }else if (name.equals(_STEP_)) {
+               Expression refExpr = new DefaultReferenceExpression(
+                       currentStep);
+               expression.setMiddleOperand(refExpr);
+               return;
             } else if (name.equals(_TIME_)) {
                Expression refExpr = new DefaultReferenceExpression(
                        currentTime);
@@ -354,5 +361,9 @@ public class DefaultMetaModelInstance implements MetaModelInstance {
 
    public void setTimeConstant(ClassInstanceProperty timeStep) {
       this.stepTime = timeStep;
+   }
+
+   public void setStepConstant(ClassInstanceProperty step) {
+      this.currentStep = step;
    }
 }

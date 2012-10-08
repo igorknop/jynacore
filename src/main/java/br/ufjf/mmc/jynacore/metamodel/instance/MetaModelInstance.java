@@ -39,4 +39,6 @@ public interface MetaModelInstance extends JynaSimulableModel{
    public void setTimeStepConstant(ClassInstanceProperty _TIME_);
 
    public void setTimeConstant(ClassInstanceProperty _TIME_STEP_);
+
+   public void setStepConstant(ClassInstanceProperty _STEP_);
 }
