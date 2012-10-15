@@ -45,6 +45,7 @@ public class ExpressionToMathMLConverter {
 	private static final String MINUS = "minus";
 	private static final String TIMES = "times";
 	private static final String DIVIDE = "divide";
+	private static final String MOD = "remainder";
 	private static final String POWER = "power";
 	private static final String CI = "ci";
 	private static final String ABS = "abs";
@@ -264,6 +265,15 @@ public class ExpressionToMathMLConverter {
 			eLeft = parse(expr.getLeftOperand());
 			eRight = parse(expr.getRightOperand());
 			eApply.addContent(eDivide);
+			eApply.addContent(eLeft);
+			eApply.addContent(eRight);
+			return eApply;
+		case MOD:
+			eApply = new Element(APPLY, mathmlNS);
+			Element eMod = new Element(MOD, mathmlNS);
+			eLeft = parse(expr.getLeftOperand());
+			eRight = parse(expr.getRightOperand());
+			eApply.addContent(eMod);
 			eApply.addContent(eLeft);
 			eApply.addContent(eRight);
 			return eApply;

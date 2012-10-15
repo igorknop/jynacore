@@ -290,6 +290,19 @@ public class ExpressionToJavaConverter {
 			if (!e.getRightOperand().isLeaf())
 				sb.append(")");
 			break;
+		case MOD:
+			if (!e.getLeftOperand().isLeaf())
+				sb.append("(");
+			sb.append(convertToJavaString(e.getLeftOperand()));
+			if (!e.getLeftOperand().isLeaf())
+				sb.append(")");
+			sb.append("%");
+			if (!e.getRightOperand().isLeaf())
+				sb.append("(");
+			sb.append(convertToJavaString(e.getRightOperand()));
+			if (!e.getRightOperand().isLeaf())
+				sb.append(")");
+			break;
 		case SQUARE:
 			sb.append("pow(");
 			if (!e.getMiddleOperand().isLeaf())
