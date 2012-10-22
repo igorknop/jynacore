@@ -1,46 +1,38 @@
-<!------------------------------------------------------------------------------
-  Copyright (c) 2009 Igor Knop.
-      This file is part of JynaCore.
-  
-      JynaCore is free software: you can redistribute it and/or modify
-      it under the terms of the GNU Lesser General Public License as published by
-      the Free Software Foundation, either version 3 of the License, or
-      (at your option) any later version.
-  
-      JynaCore is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU Lesser General Public License for more details.
-  
-      You should have received a copy of the GNU Lesser General Public License
-      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
-------------------------------------------------------------------------------->
 <?xml version="1.0" encoding="UTF-8"?>
 <metaModel>
   <name>MyProject</name>
   <classes>
     <class>
       <name>Activity</name>
-      <levels>
-        <finiteLevel>
+      <items>
+        <finiteStock>
           <name>TimeToConclude</name>
           <initialValue>
             <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
               <m:ci>duration</m:ci>
             </m:math>
           </initialValue>
-        </finiteLevel>
-        <finiteLevel>
+        </finiteStock>
+        <property>
+          <name>duration</name>
+          <value>0.0</value>
+        </property>
+        <auxiliary>
+          <name>ErrorsPerDay</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:cn>5.0</m:cn>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <finiteStock>
           <name>ExecutingOrDone</name>
           <initialValue>
             <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
               <m:cn>0.0</m:cn>
             </m:math>
           </initialValue>
-        </finiteLevel>
-      </levels>
-      <infiniteLevels />
-      <rates>
+        </finiteStock>
         <rate>
           <name>ErrorsTransmit</name>
           <expression>
@@ -65,7 +57,7 @@
               </m:apply>
             </m:math>
           </expression>
-          <to>Outcome.Errors</to>
+          <target>Outcome.Errors</target>
         </rate>
         <rate>
           <name>Work</name>
@@ -94,7 +86,7 @@
               </m:apply>
             </m:math>
           </expression>
-          <to>TimeToConclude</to>
+          <target>TimeToConclude</target>
         </rate>
         <rate>
           <name>ErrorsCommitted</name>
@@ -114,44 +106,8 @@
               </m:apply>
             </m:math>
           </expression>
-          <to>Outcome.Errors</to>
+          <target>Outcome.Errors</target>
         </rate>
-        <rate>
-          <name>RTExecuting</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:apply>
-                <m:if />
-                <m:apply>
-                  <m:and />
-                  <m:apply>
-                    <m:lt />
-                    <m:ci>ExecutingOrDone</m:ci>
-                    <m:cn>0.0010</m:cn>
-                  </m:apply>
-                  <m:ci>DependOk</m:ci>
-                </m:apply>
-                <m:cn>1.0</m:cn>
-                <m:cn>0.0</m:cn>
-              </m:apply>
-            </m:math>
-          </expression>
-          <to>ExecutingOrDone</to>
-        </rate>
-      </rates>
-      <auxiliaries>
-        <property>
-          <name>duration</name>
-          <value>0.0</value>
-        </property>
-        <auxiliary>
-          <name>ErrorsPerDay</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:cn>5.0</m:cn>
-            </m:math>
-          </expression>
-        </auxiliary>
         <auxiliary>
           <name>DependOk</name>
           <expression>
@@ -180,37 +136,50 @@
             </m:math>
           </expression>
         </auxiliary>
-      </auxiliaries>
-      <informations />
+        <rate>
+          <name>RTExecuting</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:if />
+                <m:apply>
+                  <m:and />
+                  <m:apply>
+                    <m:lt />
+                    <m:ci>ExecutingOrDone</m:ci>
+                    <m:cn>0.0010</m:cn>
+                  </m:apply>
+                  <m:ci>DependOk</m:ci>
+                </m:apply>
+                <m:cn>1.0</m:cn>
+                <m:cn>0.0</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+          <target>ExecutingOrDone</target>
+        </rate>
+      </items>
     </class>
     <class>
       <name>Artifact</name>
-      <levels>
-        <finiteLevel>
+      <items>
+        <property>
+          <name>latent_errors</name>
+          <value>0.0</value>
+        </property>
+        <finiteStock>
           <name>Errors</name>
           <initialValue>
             <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
               <m:ci>latent_errors</m:ci>
             </m:math>
           </initialValue>
-        </finiteLevel>
-      </levels>
-      <infiniteLevels />
-      <rates />
-      <auxiliaries>
-        <property>
-          <name>latent_errors</name>
-          <value>0.0</value>
-        </property>
-      </auxiliaries>
-      <informations />
+        </finiteStock>
+      </items>
     </class>
     <class>
       <name>Developer</name>
-      <levels />
-      <infiniteLevels />
-      <rates />
-      <auxiliaries>
+      <items>
         <property>
           <name>experience</name>
           <value>1.0</value>
@@ -223,8 +192,7 @@
             </m:math>
           </expression>
         </auxiliary>
-      </auxiliaries>
-      <informations />
+      </items>
     </class>
   </classes>
   <relations>

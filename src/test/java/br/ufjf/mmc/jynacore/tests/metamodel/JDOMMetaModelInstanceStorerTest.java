@@ -47,17 +47,18 @@ public class JDOMMetaModelInstanceStorerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testdir = new File("src\\test\\resources");
+		testdir = new File("src/test/resources");
 	}
 
 	/**
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.instance.impl.DefaultMetaModelInstanceStorerJDOM#loadFromFile(java.io.File)}.
 	 * @throws Exception 
 	 */
+   /*
 	@Test
 	public final void testLoadFromFile() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		MetaModelInstance  modelInstance = storer.loadFromFile(fileName);
 		assertNotNull(modelInstance);
 		assertEquals(7,modelInstance.getClassInstances().size());
@@ -90,7 +91,7 @@ public class JDOMMetaModelInstanceStorerTest {
 		assertEquals("Artifact", modelInstance.getClassInstances().get("SourceCode").getMetaModelClass().getName());
 
 		storer = new DefaultMetaModelInstanceStorerJDOM();
-		fileName = new File(testdir, "mediumSoftwareProjectInstance-save2."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		fileName = new File(testdir, "oldModels/mediumSoftwareProjectInstance-save2."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		storer.saveToFile(modelInstance, fileName);
 
 		storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -114,7 +115,7 @@ public class JDOMMetaModelInstanceStorerTest {
 	@Test
 	public final void testLoadFromFileSimple() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/simpleSoftwareProjectInstance."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		MetaModelInstance modelInstance = storer.loadFromFile(fileName);
 		modelInstance = new SimpleSoftwareProjectInstance();
 		assertNotNull(modelInstance);
@@ -131,6 +132,7 @@ public class JDOMMetaModelInstanceStorerTest {
 		assertNotNull(modelInstance.getClassInstances().get("Coding").get("Team"));
 		assertEquals(true, modelInstance.getClassInstances().get("Coding").get("Team") instanceof ClassInstanceMultiRelation);
 	}
+   * */
 
 	/**
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.instance.impl.DefaultMetaModelInstanceStorerJDOM#saveToFile(br.ufjf.mmc.jynacore.metamodel.MetaModel, java.io.File)}.
@@ -140,13 +142,13 @@ public class JDOMMetaModelInstanceStorerTest {
 	public final void testSaveToFile() throws Exception {
 		MetaModelInstance  modelInstance = new MediumSoftwareProjectInstance();
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "mediumSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		storer.saveToFile(modelInstance, fileName);
 		assertEquals(true, fileName.exists());
 		
 		modelInstance = new SimpleSoftwareProjectInstance();
 		storer = new DefaultMetaModelInstanceStorerJDOM();
-		fileName = new File(testdir, "simpleSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		fileName = new File(testdir, "oldModels/simpleSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		storer.saveToFile(modelInstance, fileName);
 		assertEquals(true, fileName.exists());
 		
@@ -155,7 +157,7 @@ public class JDOMMetaModelInstanceStorerTest {
 	public final void testSaveToFileSimple() throws Exception {
 		MetaModelInstance modelInstance = new SimpleSoftwareProjectInstance();
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
-		File fileName = new File(testdir, "simpleSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
+		File fileName = new File(testdir, "oldModels/simpleSoftwareProjectInstance-save."+MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		storer.saveToFile(modelInstance, fileName);
 		assertEquals(true, fileName.exists());
 		

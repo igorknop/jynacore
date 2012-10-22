@@ -47,7 +47,7 @@ public class JDOMMetaModelScenarioStorerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testdir = new File("src\\test\\resources");
+		testdir = new File("src/test/resources");
 	}
 
 	/**
@@ -56,11 +56,12 @@ public class JDOMMetaModelScenarioStorerTest {
 	 * 
 	 * @throws Exception
 	 */
+   /*
 	@Test
 	public final void testLoadFromFile() throws Exception {
 		//MetaModelScenarioStorer scenarioStorer = new JDOMMetaModelScenarioStorer();
 		MetaModelInstanceStorer modelStorer = new DefaultMetaModelInstanceStorerJDOM();
-		File modelFileName = new File(testdir, "pipeLineInstance."
+		File modelFileName = new File(testdir, "oldModels/pipeLineInstance."
 				+ MetaModelInstanceStorer.META_MODEL_INSTANCE_EXTENSION);
 		MetaModelInstance model = modelStorer.loadFromFile(modelFileName);
 		//scenarioStorer = new JDOMMetaModelScenarioStorer();
@@ -68,7 +69,6 @@ public class JDOMMetaModelScenarioStorerTest {
 //		model.getMetaModel().putScenario(scenario);
 //		model.getClassInstances().get("D2").setScenarioConnection("LackOfCoffe", "TheDeveloper");
 		model.updateReferences();
-		System.out.println("uepa");
 //		MetaModelScenario scenario = new LackOfCoffe();
 //		assertNotNull(model);
 //		assertEquals(7, model.size());
@@ -85,7 +85,7 @@ public class JDOMMetaModelScenarioStorerTest {
 //				model.get("Outcome") instanceof MetaModelSingleRelation);
 
 	}
-
+*/
 	/**
 	 * Test method for
 	 * {@link br.ufjf.mmc.jynacore.metamodel.impl.JDOMMetaModelStorer#saveToFile(br.ufjf.mmc.jynacore.metamodel.MetaModel, java.io.File)}.
@@ -102,7 +102,7 @@ public class JDOMMetaModelScenarioStorerTest {
 		MetaModelScenario scenario = new LackOfCoffe();
 
 		//MetaModelScenarioStorer storer = new JDOMMetaModelScenarioStorer();
-		File scenarioFileName = new File(testdir, "lackOfCoffe-save."
+		File scenarioFileName = new File(testdir, "oldModels/lackOfCoffe-save."
 				+ MetaModelScenarioStorer.META_MODEL_SCENARIO_EXTENSION);
 		MetaModelScenarioStorer scenarioStorer = new JDOMMetaModelScenarioStorer();
 		scenarioStorer.saveToFile(scenario, scenarioFileName);

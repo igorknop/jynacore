@@ -48,7 +48,7 @@ public class JDOMMetaModelStorerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testdir = new File("src\\test\\resources");
+		testdir = new File("src/test/resources");
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class JDOMMetaModelStorerTest {
 	@Test
 	public final void testLoadFromFile() throws Exception {
 		MetaModelStorer storer = new JDOMMetaModelStorer();
-		File fileName = new File(testdir, "mediumSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
 		MetaModel  model = storer.loadFromFile(fileName);
 		assertNotNull(model);
 		assertEquals(7, model.size());
@@ -84,13 +84,13 @@ public class JDOMMetaModelStorerTest {
 	public final void testSaveToFile() throws Exception {
 		MetaModel  model = new MediumSoftwareProject();
 		MetaModelStorer storer = new JDOMMetaModelStorer();
-		File fileName = new File(testdir, "mediumSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
+		File fileName = new File(testdir, "oldModels/mediumSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
 		storer.saveToFile(model, fileName);
 		assertEquals(true, fileName.exists());
 
 		model = new SimpleSoftwareProject();
 		storer = new JDOMMetaModelStorer();
-		fileName = new File(testdir, "simpleSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
+		fileName = new File(testdir, "oldModels/simpleSoftwareProject-save."+MetaModelStorer.META_MODEL_EXTENSION);
 		storer.saveToFile(model, fileName);
 		assertEquals(true, fileName.exists());
 	}

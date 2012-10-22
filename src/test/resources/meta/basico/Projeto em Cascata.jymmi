@@ -299,7 +299,6 @@
 				</connect>
 			</connects>
 		</scenario>
-		<!-- 
 		<scenario>
 			<name>Exaustão</name>
 			<fileName>Exaustão.jymms</fileName>
