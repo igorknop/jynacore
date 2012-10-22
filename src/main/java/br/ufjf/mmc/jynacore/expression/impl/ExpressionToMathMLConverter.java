@@ -532,6 +532,8 @@ public class ExpressionToMathMLConverter {
 			return NumberOperator.TIMES;
 		else if (command.getName().equals(DIVIDE))
 			return NumberOperator.DIVIDE;
+		else if (command.getName().equals(MOD))
+			return NumberOperator.MOD;
 		else if (command.getName().equals(POWER))
 			return NumberOperator.POWER;
 		else if (command.getName().equals(ABS))

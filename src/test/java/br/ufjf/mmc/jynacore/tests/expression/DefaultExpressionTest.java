@@ -110,9 +110,39 @@ public class DefaultExpressionTest {
 		assertEquals(25.0, exprDoubleSimpleOperator.evaluate());
 		// System.out.println(exprDoubleSimpleOperator.toString());
 		printExprs(exprDoubleSimpleOperator);
+      
+	}
+   
+	@Test
+	public final void testEvaluateDoubleModOperator() throws Exception {
+      Expression exprMod;
+		exprMod = new DefaultExpression();
+		exprMod.setOperator(NumberOperator.MOD);
+		exprMod.setValueType(ExpressionValueType.NUMBER);
+		exprMod.setLeftOperand(new DefaultExpression(100.0,
+				NumberOperator.CONSTANT, ExpressionValueType.NUMBER,
+				operatorEvaluator));
+		exprMod.setRightOperand(new DefaultExpression(20.0,
+				NumberOperator.CONSTANT, ExpressionValueType.NUMBER,
+				operatorEvaluator));
+
+		assertEquals(0.0, exprMod.evaluate());
+      
+      Expression exprMod2;
+		exprMod2 = new DefaultExpression();
+		exprMod2.setOperator(NumberOperator.MOD);
+		exprMod2.setValueType(ExpressionValueType.NUMBER);
+		exprMod2.setLeftOperand(new DefaultExpression(105.0,
+				NumberOperator.CONSTANT, ExpressionValueType.NUMBER,
+				operatorEvaluator));
+		exprMod2.setRightOperand(new DefaultExpression(20.0,
+				NumberOperator.CONSTANT, ExpressionValueType.NUMBER,
+				operatorEvaluator));
+
+		assertEquals(5.0, exprMod2.evaluate());
 
 	}
-
+   
 	@Test
 	public final void testEvaluateBooleanSimpleOperators() throws Exception {
 		// !(2>3)&&(1<=1)

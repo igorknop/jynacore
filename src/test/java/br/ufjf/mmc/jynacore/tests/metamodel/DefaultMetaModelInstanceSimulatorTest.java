@@ -64,6 +64,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 	 * 
 	 * @throws Exception
 	 */
+   /*
 	@Test
 	public final void testReset() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -89,7 +90,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 		assertEquals((Double)25.0, duration.getValue());
 		assertEquals((Double)25.0, level.getValue());
 	}
-
+*/
 	/**
 	 * Test method for
 	 * {@link br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceSimulation#run()}
@@ -97,6 +98,7 @@ public class DefaultMetaModelInstanceSimulatorTest {
 	 * 
 	 * @throws Exception
 	 */
+   /*
 	@Test
 	public final void testRunSimple() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -132,7 +134,8 @@ public class DefaultMetaModelInstanceSimulatorTest {
 		assertEquals((Double) 23.2, level.getValue());
 		assertEquals((Double) (-1.8), work.getValue());
 	}
-
+*/
+   /*
 	@Test
 	public final void testRunMedium() throws Exception {
 		MetaModelInstanceStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -168,5 +171,5 @@ public class DefaultMetaModelInstanceSimulatorTest {
 		assertEquals((Double) 26.8, level.getValue());
 		assertEquals((Double) 1.0, work.getValue());
 	}
-
+*/
 }

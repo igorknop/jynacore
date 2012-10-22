@@ -52,6 +52,7 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceEulerMethod#reset()}.
 	 * @throws Exception 
 	 */
+   /*
 	@Test
 	public final void testResetSimple() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -63,10 +64,12 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 		simulator.reset();
 		simulator.register();
 	}
+   */
 	/**
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceEulerMethod#reset()}.
 	 * @throws Exception 
 	 */
+   /*
 	@Test
 	public final void testResetMedium() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -78,11 +81,12 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 		simulator.reset();
 		simulator.register();
 	}
-
+*/
 	/**
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceEulerMethod#step()}.
 	 * @throws Exception 
 	 */
+   /*
 	@Test
 	public final void testStepSimple() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -94,10 +98,12 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 		simulator.step();
 		simulator.register();
 	}
+   */
 	/**
 	 * Test method for {@link br.ufjf.mmc.jynacore.metamodel.simulator.impl.DefaultMetaModelInstanceEulerMethod#step()}.
 	 * @throws Exception 
 	 */
+   /*
 	@Test
 	public final void testStepMedium() throws Exception {
 		JynaModelStorer storer = new DefaultMetaModelInstanceStorerJDOM();
@@ -109,5 +115,5 @@ public class DefaultMetaModelInstanceEulerMethodTest {
 		simulator.step();
 		simulator.register();
 	}
-
+*/
 }

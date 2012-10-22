@@ -24,7 +24,7 @@ public enum NumberOperator implements Operator {
 			"LOG"), NEGATION("-"), SINE("SIN"), SQUARE("SQR"), SQUAREROOT(
 			"SQRT"), CONSTANT(""), MINIMUM("MIN"), MAXIMUM("MAX"), GROUPSUM(
 			"GROUPSUM"), IF("IF"), GROUPMAX("GROUPMAX"), COSINE("COSINE"), TAN(
-			"TAN"), EXP("EXP"), MOD("MOD"), RAND("RAND"), RANDINT("RANDINT"), GROUPMIN(
+			"TAN"), EXP("EXP"), MOD("%"), RAND("RAND"), RANDINT("RANDINT"), GROUPMIN(
 			"GROUPMIN"), GROUPCOUNT("GROUPCOUNT"), LOOKUP("LOOKUP");
 	public static NumberOperator[] GROUP_OPERATORS = {GROUPCOUNT,GROUPSUM,GROUPMIN,GROUPMAX};
 	private final String symbol;
