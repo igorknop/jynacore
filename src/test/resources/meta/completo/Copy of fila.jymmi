@@ -1,0 +1,89 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+	<name>Projeto em Fila</name>
+	<metaModelFile>projeto de software.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Projeto número 1</name>
+			<class>Projeto</class>
+			<items>
+				<multiRelation>
+					<name>Tarefa</name>
+					<targets>
+						<target>Projeto</target>
+						<target>Codificação</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Projeto</name>
+			<class>Atividade</class>
+			<items>
+				<singleRelation>
+					<name>Equipe</name>
+					<target>Fulano</target>
+				</singleRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Codificação</name>
+			<class>Atividade</class>
+			<items>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>Projeto</target>
+					</targets>
+				</multiRelation>
+				<singleRelation>
+					<name>Equipe</name>
+					<target>Ciclano</target>
+				</singleRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Fulano</name>
+			<class>Desenvolvedor</class>
+			<items>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Ciclano</name>
+			<class>Desenvolvedor</class>
+			<items>
+			</items>
+		</classInstance>
+	</classInstances>
+	<scenarios>
+			<scenario>
+			<name>Produtividade Baseada na Experiência</name>
+			<fileName>Produtividade Baseada na Experiência.jymms</fileName>
+			<connects>
+				<connect>
+					<name>ODesenvolvedor</name>
+					<instance>Ciclano</instance>
+				</connect>
+			
+			</connects>
+		</scenario>
+	</scenarios>
+</metaModelInstance>
+

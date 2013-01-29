@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+  <name>Lack Of Coffe</name>
+  <metaModelName>PipeLine Project</metaModelName>
+  <connections>
+    <connection>
+      <name>TheDeveloper</name>
+      <className>Developer</className>
+      <classInstanceItems>
+        <property>
+          <name>lackOfCoffeFactor</name>
+          <value>0.5</value>
+        </property>
+      </classInstanceItems>
+      <affects>
+        <affect>
+          <name>Productivity</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:times />
+                <m:ci>experience</m:ci>
+                <m:ci>lackOfCoffeFactor</m:ci>
+              </m:apply>
+            </m:math>
+          </expression>
+        </affect>
+      </affects>
+      <constraints />
+    </connection>
+  </connections>
+</scenario>
+

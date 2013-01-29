@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel>
+	<name>Difusão do Conhecimento</name>
+	<stocks>
+		<finiteStock>
+			<name>Pessoal Experiente</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Pessoal Novato</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>24.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>Assimilação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Pessoal Novato</m:ci>
+						<m:ci>Fator de Assimilação</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Pessoal Novato</source>
+			<target>Pessoal Experiente</target>
+		</rate>
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>Fator de Assimilação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>20.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+	<informations>
+		<information>
+			<name>Valor de Pessoal Novato</name>
+			<source>Pessoal Novato</source>
+			<consumer>Assimilação</consumer>
+		</information>
+		<information>
+			<name>Valor de Fator de Comunicação</name>
+			<source>Fator de Assimilação</source>
+			<consumer>Assimilação</consumer>
+		</information>
+	</informations>
+</systemDynamicsModel>
+

@@ -1,0 +1,184 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+	<name>Projeto em Fila</name>
+	<metaModelFile>projetoBasico.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Projeto número 1</name>
+			<class>Projeto</class>
+			<items>
+				<multiRelation>
+					<name>Tarefa</name>
+					<targets>
+						<target>Projeto</target>
+						<target>Codificação</target>
+						<target>Testes</target>
+					</targets>
+				</multiRelation>
+			</items>
+			
+		</classInstance>
+		<classInstance>
+			<name>Codificação</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>25.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D3</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>Projeto</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Codificação 2</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>15.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>25.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D2</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>Codificação</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Projeto</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>15.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>15.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D1</target>
+						<target>D2</target>
+					</targets>
+				</multiRelation>
+
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Testes</name>
+			<class>Atividade</class>
+			<items>
+				<stock>
+					<name>Tempo para Concluir</name>
+					<value>5.0</value>
+				</stock>
+				<property>
+					<name>duração</name>
+					<value>5.0</value>
+				</property>
+				<multiRelation>
+					<name>Equipe</name>
+					<targets>
+						<target>D4</target>
+					</targets>
+				</multiRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>Codificação 2</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D2</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>0.8</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D1</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D4</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>0.5</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D3</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>0.6</value>
+				</property>
+			</items>
+		</classInstance>
+	</classInstances>
+	<scenarios />
+
+</metaModelInstance>
+

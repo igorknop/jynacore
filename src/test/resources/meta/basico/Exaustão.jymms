@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<scenario>
+	<name>Exaustão</name>
+	<metaModelName>Projeto de Software Básico</metaModelName>
+	<connections>
+		<connection>
+			<name>ODesenvolvedor</name>
+			<className>Desenvolvedor</className>
+			<classInstanceItems>
+				<finiteStock>
+					<name>Exaustão</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0.0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteStock>
+				<finiteStock>
+					<name>Descanso</name>
+					<initialValue>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0.0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteStock>
+				<rate>
+					<name>Variação de Exaustão</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:eq />
+									<m:ci>Descanso</m:ci>
+									<m:cn>1</m:cn>
+								</m:apply>
+								<m:apply>
+									<m:divide/>
+									<m:apply>
+										<m:inverse />
+										<m:ci>Exaustão Máxima</m:ci>
+									</m:apply>
+									<m:cn>20.0</m:cn>
+								</m:apply>
+								<m:ci>Taxa de Exaustão</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+					<target>Exaustão</target>
+				</rate>
+				<auxiliary>
+					<name>Fator de Dedicação</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:minus />
+								<m:cn>1.0</m:cn>
+								<m:apply>
+									<m:divide />
+									<m:apply>
+										<m:minus />
+										<m:cn>1.0</m:cn>
+										<m:ci>Dedicação</m:ci>
+									</m:apply>
+									<m:cn>0.4</m:cn>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Dedicação</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:plus />
+								<m:cn>0.6</m:cn>
+								<m:apply>
+									<m:times />
+									<m:apply>
+										<m:minus />
+										<m:ci>ModificadorHDT</m:ci>
+										<m:cn>1.0</m:cn>
+									</m:apply>
+									<m:apply>
+										<m:minus />
+										<m:cn>1.2</m:cn>
+										<m:ci>0.6</m:ci>
+									</m:apply>
+								</m:apply>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<auxiliary>
+					<name>Taxa de Exaustão</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:lookup />
+								<m:ci>Tabela de Exaustão</m:ci>
+								<m:ci>Fator de Dedicação</m:ci>
+								<m:cn>0.0</m:cn>
+								<m:cn>1.5</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+				<table>
+					<name>Tabela de Exaustão</name>
+					<values>
+						<value>0.0</value>
+						<value>0.0</value>
+						<value>0.2</value>
+						<value>0.3</value>
+						<value>0.4</value>
+						<value>0.5</value>
+						<value>0.6</value>
+						<value>0.7</value>
+						<value>0.8</value>
+						<value>0.9</value>
+						<value>1.15</value>
+						<value>1.3</value>
+						<value>1.6</value>
+						<value>1.9</value>
+						<value>2.2</value>
+						<value>2.5</value>
+					</values>
+				</table>
+				<rate>
+					<name>Variação de Descanso 1</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Começando Descanso</m:ci>
+								<m:apply>
+									<m:divide/>
+									<m:cn>1.0</m:cn>
+									<m:ci>_TIME_STEP_</m:ci>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<target>Descanso</target>
+				</rate>
+				<rate>
+					<name>Variação de Descanso 2</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:ci>Saindo Descanso</m:ci>
+								<m:apply>
+									<m:divide/>
+									<m:cn>-1.0</m:cn>
+									<m:ci>_TIME_STEP_</m:ci>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<target>Descanso</target>
+				</rate>
+				<rate>
+					<name>Variação de Exaustão</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:eq />
+									<m:ci>Descanso</m:ci>
+									<m:cn>1</m:cn>
+								</m:apply>
+								<m:apply>
+									<m:divide/>
+									<m:apply>
+										<m:inverse />
+										<m:ci>Exaustão Máxima</m:ci>
+									</m:apply>
+									<m:cn>20.0</m:cn>
+								</m:apply>
+								<m:ci>Taxa de Exaustão</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+					<target>Exaustão</target>
+				</rate>				
+			</classInstanceItems>
+			<affects>
+				<affect>
+					<name>Produtividade</name>
+					<expression>
+						<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:times />
+								<m:ci>Produtividade</m:ci>
+								<m:ci>ModificadorDNP</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</affect>
+			</affects>
+			<constraints>
+				<constraint>
+					<scenario>Regime de Hora Extra</scenario>
+					<connection>ODesenvolvedor</connection>
+				</constraint>
+			</constraints>
+		</connection>
+	</connections>
+</scenario>
+

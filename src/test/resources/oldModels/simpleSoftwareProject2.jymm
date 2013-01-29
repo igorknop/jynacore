@@ -1,0 +1,274 @@
+<!------------------------------------------------------------------------------
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------->
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModel>
+	<name>Simple Software Project</name>
+	<classes>
+		<class>
+			<name>Project</name>
+			<levels>
+				<finiteLevel>
+					<initialValue>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+					<name>cost</name>
+				</finiteLevel>
+				<finiteLevel>
+					<initialValue>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+					<name>ConcluedAt</name>
+				</finiteLevel>
+			</levels>
+			<infiniteLevels></infiniteLevels>
+			<informations></informations>
+			<rates>
+				<rate>
+					<name>CostIncrease</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:minus />
+								<m:ci>CostInc</m:ci>
+								<m:ci>cost</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>cost</to>
+				</rate>
+				<rate>
+					<name>Executing</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:leq />
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Task</m:ci>
+										<m:ci>TimeToConclude</m:ci>
+									</m:apply>
+									<m:cn>0.001</m:cn>
+								</m:apply>
+								<m:cn>0</m:cn>
+								<m:cn>1</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>ConcluedAt</to>
+				</rate>
+			</rates>
+			<auxiliaries>
+				<auxiliary>
+					<name>CostInc</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:groupsum />
+								<m:ci>Task</m:ci>
+								<m:ci>Cost</m:ci>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+
+			</auxiliaries>
+		</class>
+
+
+		<class>
+			<name>Activity</name>
+			<levels>
+				<finiteLevel>
+					<name>TimeToConclude</name>
+					<initialValue>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>duration</m:ci>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+				<finiteLevel>
+					<name>Cost</name>
+					<initialValue>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:cn>0</m:cn>
+						</m:math>
+					</initialValue>
+				</finiteLevel>
+			</levels>
+			<infiniteLevels />
+			<rates>
+				<rate>
+					<name>Work</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:leq />
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Precedence</m:ci>
+										<m:ci>TimeToConclude</m:ci>
+									</m:apply>
+									<m:cn>0.041</m:cn>
+								</m:apply>
+								<m:apply>
+									<m:inverse />
+									<m:ci>Prod</m:ci>
+								</m:apply>
+								<m:cn>0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>TimeToConclude</to>
+				</rate>
+				<rate>
+					<name>CostIncrease</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:if />
+								<m:apply>
+									<m:and />
+									<m:apply>
+										<m:leq />
+										<m:apply>
+											<m:groupsum />
+											<m:ci>Precedence</m:ci>
+											<m:ci>TimeToConclude</m:ci>
+										</m:apply>
+										<m:cn>0.041</m:cn>
+									</m:apply>
+									<m:apply>
+										<m:geq />
+										<m:ci>TimeToConclude</m:ci>
+										<m:cn>0.041</m:cn>
+									</m:apply>
+								</m:apply>
+
+								<m:apply>
+									<m:times />
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Team</m:ci>
+										<m:ci>HourlyCost</m:ci>
+									</m:apply>
+
+									<m:apply>
+										<m:divide />
+										<m:ci>duration</m:ci>
+										<m:ci>TimeToConclude</m:ci>
+									</m:apply>
+								</m:apply>
+								<m:cn>0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+					<to>Cost</to>
+				</rate>
+			</rates>
+			<auxiliaries>
+				<property>
+					<name>duration</name>
+					<value>20.0</value>
+				</property>
+				<auxiliary>
+					<name>Prod</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:apply>
+								<m:max />
+								<m:apply>
+									<m:min />
+									<m:ci>TimeToConclude</m:ci>
+									<m:apply>
+										<m:groupsum />
+										<m:ci>Team</m:ci>
+										<m:ci>Productivity</m:ci>
+									</m:apply>
+								</m:apply>
+								<m:cn>0.0</m:cn>
+							</m:apply>
+						</m:math>
+					</expression>
+				</auxiliary>
+			</auxiliaries>
+			<informations />
+		</class>
+		<class>
+			<name>Developer</name>
+			<levels />
+			<infiniteLevels />
+			<rates />
+			<auxiliaries>
+				<property>
+					<name>HourlyCost</name>
+					<value>0.02</value>
+				</property>
+				<property>
+					<name>experience</name>
+					<value>1.0</value>
+				</property>
+				<auxiliary>
+					<name>Productivity</name>
+					<expression>
+						<m:math
+							xmlns:m="http://www.w3.org/1998/Math/MathML">
+							<m:ci>experience</m:ci>
+						</m:math>
+					</expression>
+				</auxiliary>
+			</auxiliaries>
+			<informations />
+		</class>
+	</classes>
+	<relations>
+		<multiRelation>
+			<name>Team</name>
+			<source>Activity</source>
+			<target>Developer</target>
+		</multiRelation>
+		<multiRelation>
+			<name>Precedence</name>
+			<source>Activity</source>
+			<target>Activity</target>
+		</multiRelation>
+		<multiRelation>
+			<name>Task</name>
+			<source>Project</source>
+			<target>Activity</target>
+		</multiRelation>
+	</relations>
+</metaModel>
+

@@ -120,6 +120,9 @@ public class DefaultSystemDynamicsSimulation implements
 	@Override
 	public void setModel(SystemDynamicsModel model) throws Exception {
 		this.model = model;
+      if(this.method!=null){
+         this.method.setModel(model);
+      }
 	}
 
 

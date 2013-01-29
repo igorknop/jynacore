@@ -191,8 +191,8 @@ public class DefaultMetaModelInstanceSimulation implements
 
 	@Override
 	public void step() throws Exception {
-		method.setInitialTime(getProfile().getInitialTime());
-		method.setStepSize(getProfile().getTimeInterval());
+//		method.setInitialTime(getProfile().getInitialTime());
+//		method.setStepSize(getProfile().getTimeInterval());
 		method.step();
 	}
 

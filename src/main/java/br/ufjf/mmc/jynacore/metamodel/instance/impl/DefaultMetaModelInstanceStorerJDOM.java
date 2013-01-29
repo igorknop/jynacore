@@ -256,7 +256,7 @@ public class DefaultMetaModelInstanceStorerJDOM implements MetaModelInstanceStor
 		return eClassInstance;
 	}
 
-	// @Override
+ @Override
 	public MetaModelInstance loadFromFile(File fileName) throws Exception {
 		MetaModelInstance modelInstance = new DefaultMetaModelInstance();
 

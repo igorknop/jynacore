@@ -36,7 +36,10 @@ public class DefaultSimulationProfile implements JynaSimulationProfile {
 
 	public DefaultSimulationProfile() {
 		name = "Default profile";
-		setTimeLimits(100, 100.0);
+		this.stepCount = 100;
+		this.timeInterval = 100.0 / stepCount;
+		this.initialTime = 0.0;
+      
 	}
 
 	/*

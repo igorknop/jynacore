@@ -93,7 +93,7 @@ public class DefaultExpression implements Expression {
 		setValue(oldExpression.getValue());
 		setValueType(oldExpression.getValueType());
 
-		// Mantive a referência aqui
+		// Mantive a referÃªncia aqui
 		setOperatorEvaluator(getOperatorEvaluator());
 	}
 

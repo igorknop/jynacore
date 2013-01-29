@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Copyright (c) 2009 Igor Knop. This file is part of JynaCore. JynaCore
+		is free software: you can redistribute it and/or modify it under the
+		terms of the GNU Lesser General Public License as published by the
+		Free Software Foundation, either version 3 of the License, or (at your
+		option) any later version. JynaCore is distributed in the hope that it
+		will be useful, but WITHOUT ANY WARRANTY; without even the implied
+		warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
+		the GNU Lesser General Public License for more details. You should
+		have received a copy of the GNU Lesser General Public License along
+		with JynaCore. If not, see <http://www.gnu.org/licenses/>.
+	-->
+<metaModelInstance>
+	<name>Projeto em Cascata</name>
+	<metaModelFile>Projeto de Software Simples.jymm</metaModelFile>
+	<classInstances>
+		<classInstance>
+			<name>Projeto</name>
+			<class>Atividade</class>
+			<items>
+				<property>
+					<name>duração</name>
+					<value>20.0</value>
+				</property>
+				<singleRelation>
+					<name>Equipe</name>
+					<target>D1</target>
+				</singleRelation>
+				<singleRelation>
+					<name>Entrada</name>
+					<target>Modelo de Análise</target>
+				</singleRelation>
+				<singleRelation>
+					<name>Saída</name>
+					<target>Modelo de Projeto</target>
+				</singleRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Codificação</name>
+			<class>Atividade</class>
+			<items>
+				<property>
+					<name>duração</name>
+					<value>15.0</value>
+				</property>
+				<singleRelation>
+					<name>Equipe</name>
+					<target>D2</target>
+				</singleRelation>
+				<singleRelation>
+					<name>Entrada</name>
+					<target>Modelo de Projeto</target>
+				</singleRelation>
+				<singleRelation>
+					<name>Saída</name>
+					<target>Código Fonte</target>
+				</singleRelation>
+				<multiRelation>
+					<name>Precedente</name>
+					<targets>
+						<target>Projeto</target>
+					</targets>
+				</multiRelation>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D1</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>1.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>D2</name>
+			<class>Desenvolvedor</class>
+			<items>
+				<property>
+					<name>experiência</name>
+					<value>0.6</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Modelo de Análise</name>
+			<class>Artefato</class>
+			<items>
+				<property>
+					<name>erros iniciais</name>
+					<value>10.0</value>
+				</property>
+			</items>
+		</classInstance>
+		<classInstance>
+			<name>Modelo de Projeto</name>
+			<class>Artefato</class>
+			<items></items>
+		</classInstance>
+		<classInstance>
+			<name>Código Fonte</name>
+			<class>Artefato</class>
+			<items></items>
+		</classInstance>
+	</classInstances>
+	<scenarios>
+		<files>
+			<file>Dependência de Atividades.jymms</file>
+        <!--
+			<file>Produtividade Baseada na Experiência.jymms</file>
+			<file>Produção Baseada na Equipe.jymms</file>
+			<file>Geração de Erros Baseada na Produção.jymms</file>
+        -->
+		</files>
+		<connects>
+        <!--
+			<connect>
+				<scenario>Produtividade Baseada na Experiência</scenario>
+				<name>ODesenvolvedor</name>
+				<instance>D1</instance>
+			</connect>
+			<connect>
+				<scenario>Produtividade Baseada na Experiência</scenario>
+				<name>ODesenvolvedor</name>
+				<instance>D2</instance>
+			</connect>
+			<connect>
+				<scenario>Produção Baseada na Equipe</scenario>
+				<name>AAtividade</name>
+				<instance>Projeto</instance>
+			</connect>
+			<connect>
+				<scenario>Produção Baseada na Equipe</scenario>
+				<name>AAtividade</name>
+				<instance>Codificação</instance>
+			</connect>
+        -->
+			<connect>
+				<scenario>Dependência de Atividades</scenario>
+				<name>AAtividade</name>
+				<instance>Projeto</instance>
+			</connect>
+			<connect>
+				<scenario>Dependência de Atividades</scenario>
+				<name>AAtividade</name>
+				<instance>Codificação</instance>
+			</connect>
+        <!--
+			<connect>
+				<scenario>Geração de Erros Baseada na Produção</scenario>
+				<name>AAtividade</name>
+				<instance>Projeto</instance>
+			</connect>
+			<connect>
+				<scenario>Geração de Erros Baseada na Produção</scenario>
+				<name>AAtividade</name>
+				<instance>Codificação</instance>
+			</connect>
+        -->
+		</connects>
+	</scenarios>
+</metaModelInstance>
+

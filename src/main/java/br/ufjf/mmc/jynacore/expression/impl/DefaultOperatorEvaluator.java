@@ -186,6 +186,8 @@ public class DefaultOperatorEvaluator implements OperatorEvaluator {
 			return Math.cos((Double) expression.getMiddleOperand().evaluate());
 		case TAN:
 			return Math.tan((Double) expression.getMiddleOperand().evaluate());
+		case MOD:
+			return (Math.floor((Double)expression.getLeftOperand().evaluate()) % (Math.floor((Double) expression.getRightOperand().evaluate())));
 		case RAND:
 			Random rnd = new Random();
 			return new Double(rnd.nextFloat());

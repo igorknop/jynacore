@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel>
+	<name>Desevolvimento de Software em Equipe</name>
+	<stocks>
+		<finiteStock>
+			<name>Software Desenvolvido</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Requisitos de Software</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>150.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Pessoal Experiente</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>10.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>Pessoal Novato</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+		<infiniteStock>
+			<name>Pessoal Externo</name>
+		</infiniteStock>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>Desenvolvimento</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:min />
+						<m:ci>Requisitos de Software</m:ci>
+						<m:ci>Produtividade</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Requisitos de Software</source>
+			<target>Software Desenvolvido</target>
+		</rate>
+		<rate>
+			<name>Assimilação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:divide />
+						<m:ci>Pessoal Novato</m:ci>
+						<m:ci>Fator de Assimilação</m:ci>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Pessoal Novato</source>
+			<target>Pessoal Experiente</target>
+		</rate>
+		<rate>
+			<name>Contratação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:if />
+						<m:apply>
+							<m:eq />
+							<m:ci>_TIME_</m:ci>
+							<m:cn>135.0</m:cn>
+						</m:apply>
+						<m:apply>
+							<m:divide />							
+							<m:cn>5.0</m:cn>
+							<m:ci>_TIME_STEP_</m:ci>
+						</m:apply>
+						<m:cn>0.0</m:cn>	
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>Pessoal Externo</source>
+			<target>Pessoal Novato</target>
+		</rate>
+
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>Produtividade</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+				<m:apply>
+					<m:times />
+					<m:cn>0.1</m:cn>
+					<m:apply>
+						<m:plus />
+						<m:apply>
+							<m:times />
+							<m:ci>Fator Novatos</m:ci>
+							<m:ci>Pessoal Novato</m:ci>
+						</m:apply>
+						<m:apply>
+							<m:times />
+							<m:ci>Fator Experientes</m:ci>
+							<m:apply>
+								<m:minus />
+								<m:ci>Pessoal Experiente</m:ci>
+								<m:ci>Experientes Destacados para Treinamento</m:ci>
+							</m:apply>
+						</m:apply>
+					</m:apply>
+				</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Experientes Destacados para Treinamento</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+						<m:apply>
+								<m:divide />
+								<m:ci>Pessoal Novato</m:ci>
+								<m:cn>3</m:cn>
+						</m:apply>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Fator Experientes</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Fator Novatos</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>Fator de Assimilação</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>20.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+	<informations>
+		<information>
+			<name>Valor de Requisitos de Software</name>
+			<source>Requisitos de Software</source>
+			<consumer>Desenvolvimento</consumer>
+		</information>
+		<information>
+			<name>Valor de Produtividade</name>
+			<source>Produtividade</source>
+			<consumer>Desenvolvimento</consumer>
+		</information>
+		<information>
+			<name>Valor de Fator Novatos</name>
+			<source>Fator Novatos</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>Valor de Fator Experientes</name>
+			<source>Fator Experientes</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>Valor de Pessoal Novato</name>
+			<source>Pessoal Novato</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>Valor de Pessoal Experiente</name>
+			<source>Pessoal Experiente</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>Valor de Pessoal Novato A</name>
+			<source>Pessoal Novato</source>
+			<consumer>Assimilação</consumer>
+		</information>
+		<information>
+			<name>Valor de Fator de Comunicação</name>
+			<source>Fator de Assimilação</source>
+			<consumer>Assimilação</consumer>
+		</information>
+		<information>
+			<name>Valor de Experientes para Treinamento</name>
+			<source>Experientes Destacados para Treinamento</source>
+			<consumer>Produtividade</consumer>
+		</information>
+		<information>
+			<name>Valor de Pessoal Novato B</name>
+			<source>Pessoal Novato</source>
+			<consumer>Experientes Destacados para Treinamento</consumer>
+		</information>
+	</informations>
+</systemDynamicsModel>
+

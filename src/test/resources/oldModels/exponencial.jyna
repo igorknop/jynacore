@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemDynamicsModel>
+  <stocks>
+    <finiteStock>
+      <name>Population</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>1.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+  </stocks>
+  <infiniteStocks>
+    <infiniteStock>
+      <name>PopulationSource</name>
+    </infiniteStock>
+  </infiniteStocks>
+  <rates>
+    <rate>
+      <name>GrowthRate</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:times />
+            <m:ci>GrowthFactor</m:ci>
+            <m:ci>Population</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+      <source>PopulationSource</source>
+      <target>Population</target>
+    </rate>
+  </rates>
+  <auxiliaries>
+    <auxiliary>
+      <name>GrowthFactor</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.5</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+  </auxiliaries>
+  <informations>
+    <information>
+      <name>CurrentFactor</name>
+      <source>GrowthFactor</source>
+      <consumer>GrowthRate</consumer>
+    </information>
+    <information>
+      <name>CurrentPopulation</name>
+      <source>Population</source>
+      <consumer>GrowthRate</consumer>
+    </information>
+  </informations>
+</systemDynamicsModel>
+

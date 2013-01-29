@@ -35,4 +35,10 @@ public interface MetaModelInstance extends JynaSimulableModel{
 	public String getMetaModelFileName();
 	public void setMetaModelFileName(String newFileName);
 	public List<MetaModelInstanceScenarioConnect> getScenariosConnects();
+
+   public void setTimeStepConstant(ClassInstanceProperty _TIME_);
+
+   public void setTimeConstant(ClassInstanceProperty _TIME_STEP_);
+
+   public void setStepConstant(ClassInstanceProperty _STEP_);
 }

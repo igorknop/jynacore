@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel>
+  <name>Elementos Básicos de Estoque e Fluxo</name>
+  <stocks>
+    <finiteStock>
+      <name>Estoque Finito</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>1.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+  </stocks>
+  <infiniteStocks>
+    <infiniteStock>
+      <name>Estoque Infinito</name>
+    </infiniteStock>
+  </infiniteStocks>
+  <rates>
+    <rate>
+      <name>Taxa</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:times />
+            <m:ci>Auxiliar</m:ci>
+            <m:ci>Estoque Finito</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+      <source>Estoque Infinito</source>
+      <target>Estoque Finito</target>
+    </rate>
+  </rates>
+  <auxiliaries>
+    <auxiliary>
+      <name>Auxiliar</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.5</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+  </auxiliaries>
+  <informations>
+    <information>
+      <name>Valor atual do Auxiliar</name>
+      <source>Auxiliar</source>
+      <consumer>Taxa</consumer>
+    </information>
+    <information>
+      <name>Valor atual do Estoque Finito</name>
+      <source>Estoque Finito</source>
+      <consumer>Taxa</consumer>
+    </information>
+  </informations>
+</systemDynamicsModel>
+

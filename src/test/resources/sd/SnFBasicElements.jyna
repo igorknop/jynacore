@@ -1,0 +1,75 @@
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<systemDynamicsModel>
+  <name>Basic elements of Stock and Flux Diagrams</name>
+  <stocks>
+    <finiteStock>
+      <name>Finite Stock</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>1.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+  </stocks>
+  <infiniteStocks>
+    <infiniteStock>
+      <name>Infinite Stock</name>
+    </infiniteStock>
+  </infiniteStocks>
+  <rates>
+    <rate>
+      <name>Rate</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:times />
+            <m:ci>Auxiliary</m:ci>
+            <m:ci>Finite Stock</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+      <source>Infinite Stock</source>
+      <target>Finite Stock</target>
+    </rate>
+  </rates>
+  <auxiliaries>
+    <auxiliary>
+      <name>Auxiliary</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.5</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+  </auxiliaries>
+  <informations>
+    <information>
+      <name>Current Auxiliary Value</name>
+      <source>Auxiliary</source>
+      <consumer>Rate</consumer>
+    </information>
+    <information>
+      <name>Current Stock Value</name>
+      <source>Finite Stock</source>
+      <consumer>Rate</consumer>
+    </information>
+  </informations>
+</systemDynamicsModel>
+

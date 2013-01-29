@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemDynamicsModel>
+  <stocks>
+    <finiteStock>
+      <name>Y</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+    <finiteStock>
+      <name>X</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>1.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+  </stocks>
+  <infiniteStocks>
+    <infiniteStock>
+      <name>XSource</name>
+    </infiniteStock>
+    <infiniteStock>
+      <name>YSource</name>
+    </infiniteStock>
+  </infiniteStocks>
+  <rates>
+    <rate>
+      <name>dY</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:times />
+            <m:apply>
+              <m:inverse />
+              <m:ci>factor</m:ci>
+            </m:apply>
+            <m:ci>difference</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+      <source>YSource</source>
+      <target>Y</target>
+    </rate>
+    <rate>
+      <name>dX</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:ci>Y</m:ci>
+        </m:math>
+      </expression>
+      <source>XSource</source>
+      <target>X</target>
+    </rate>
+  </rates>
+  <auxiliaries>
+    <auxiliary>
+      <name>desiredX</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.0</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+    <auxiliary>
+      <name>factor</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.01</m:cn>
+        </m:math>
+      </expression>
+    </auxiliary>
+    <auxiliary>
+      <name>difference</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:minus />
+            <m:ci>X</m:ci>
+            <m:ci>desiredX</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+    </auxiliary>
+  </auxiliaries>
+  <informations>
+    <information>
+      <name>CurrentY</name>
+      <source>Y</source>
+      <consumer>dX</consumer>
+    </information>
+    <information>
+      <name>CurrentDesiredX</name>
+      <source>desiredX</source>
+      <consumer>difference</consumer>
+    </information>
+    <information>
+      <name>CurrentDifference</name>
+      <source>difference</source>
+      <consumer>dY</consumer>
+    </information>
+    <information>
+      <name>CurrentX</name>
+      <source>X</source>
+      <consumer>difference</consumer>
+    </information>
+    <information>
+      <name>CurrentFactor</name>
+      <source>factor</source>
+      <consumer>dY</consumer>
+    </information>
+  </informations>
+</systemDynamicsModel>
+

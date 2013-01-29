@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaModelInstance>
+  <name>Simple Software Project Instance</name>
+  <metaModelFile>simpleSoftwareProject.jymm</metaModelFile>
+  <classInstances>
+    <classInstance>
+      <name>Coding</name>
+      <class>Activity</class>
+      <items>
+        <stock>
+          <name>TimeToConclude</name>
+          <value>0.0</value>
+        </stock>
+        <property>
+          <name>duration</name>
+          <value>25.0</value>
+        </property>
+        <multiRelation>
+          <name>Team</name>
+          <targets>
+            <target>D2</target>
+            <target>D1</target>
+          </targets>
+        </multiRelation>
+      </items>
+    </classInstance>
+    <classInstance>
+      <name>D2</name>
+      <class>Developer</class>
+      <items>
+        <property>
+          <name>experience</name>
+          <value>1.0</value>
+        </property>
+      </items>
+    </classInstance>
+    <classInstance>
+      <name>D1</name>
+      <class>Developer</class>
+      <items>
+        <property>
+          <name>experience</name>
+          <value>0.8</value>
+        </property>
+      </items>
+    </classInstance>
+  </classInstances>
+  <scenarios>
+    <files />
+    <connects />
+  </scenarios>
+</metaModelInstance>
+

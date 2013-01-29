@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 Igor Knop.
+      This file is part of JynaCore.
+  
+      JynaCore is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+  
+      JynaCore is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Lesser General Public License for more details.
+  
+      You should have received a copy of the GNU Lesser General Public License
+      along with JynaCore.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<systemDynamicsModel>
+	<name>Full Oscilatory System</name>
+	<stocks>
+		<finiteStock>
+			<name>Y</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+		<finiteStock>
+			<name>X</name>
+			<initialValue>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</initialValue>
+		</finiteStock>
+	</stocks>
+	<infiniteStocks>
+		<infiniteStock>
+			<name>XSource</name>
+		</infiniteStock>
+		<infiniteStock>
+			<name>YSource</name>
+		</infiniteStock>
+	</infiniteStocks>
+	<rates>
+		<rate>
+			<name>dY</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:plus />
+						<m:apply>
+							<m:times />
+							<m:ci>K21</m:ci>
+							<m:ci>X</m:ci>
+						</m:apply>
+						<m:apply>
+							<m:times />
+							<m:ci>K22</m:ci>
+							<m:ci>Y</m:ci>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>YSource</source>
+			<target>Y</target>
+		</rate>
+		<rate>
+			<name>dX</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:apply>
+						<m:plus />
+						<m:apply>
+							<m:times />
+							<m:ci>K11</m:ci>
+							<m:ci>X</m:ci>
+						</m:apply>
+						<m:apply>
+							<m:times />
+							<m:ci>K12</m:ci>
+							<m:ci>Y</m:ci>
+						</m:apply>
+					</m:apply>
+				</m:math>
+			</expression>
+			<source>XSource</source>
+			<target>X</target>
+		</rate>
+	</rates>
+	<auxiliaries>
+		<auxiliary>
+			<name>K11</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>K12</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>1.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>K21</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>-0.01</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+		<auxiliary>
+			<name>K22</name>
+			<expression>
+				<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+					<m:cn>0.0</m:cn>
+				</m:math>
+			</expression>
+		</auxiliary>
+	</auxiliaries>
+	<informations>
+		<information>
+			<name>XtoDX</name>
+			<source>X</source>
+			<consumer>dX</consumer>
+		</information>
+		<information>
+			<name>YtoDX</name>
+			<source>Y</source>
+			<consumer>dX</consumer>
+		</information>
+		<information>
+			<name>XtoDY</name>
+			<source>X</source>
+			<consumer>dY</consumer>
+		</information>
+		<information>
+			<name>YtoDY</name>
+			<source>Y</source>
+			<consumer>dY</consumer>
+		</information>
+		<information>
+			<name>K11toDX</name>
+			<source>K11</source>
+			<consumer>dX</consumer>
+		</information>
+		<information>
+			<name>K12toDX</name>
+			<source>K12</source>
+			<consumer>dX</consumer>
+		</information>
+		<information>
+			<name>K21toDY</name>
+			<source>K21</source>
+			<consumer>dY</consumer>
+		</information>
+		<information>
+			<name>K22toDY</name>
+			<source>K22</source>
+			<consumer>dY</consumer>
+		</information>
+	</informations>
+</systemDynamicsModel>
