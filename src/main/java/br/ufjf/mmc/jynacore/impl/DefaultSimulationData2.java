@@ -19,22 +19,12 @@
 package br.ufjf.mmc.jynacore.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
-import br.ufjf.mmc.jynacore.JynaItem;
 import br.ufjf.mmc.jynacore.JynaSimulationData;
 import br.ufjf.mmc.jynacore.JynaValued;
-import br.ufjf.mmc.jynacore.metamodel.instance.ClassInstanceItem;
 
 /**
  * @author Knop
@@ -86,7 +76,7 @@ public class DefaultSimulationData2 implements JynaSimulationData {
 
 	@Override
 	public Number getValue(int series, int time) {
-		return seriesList.get(series).get(timeList.get(time));
+		return seriesList.get(series).get((time));
 	}
 
 	@Override
@@ -146,6 +136,6 @@ public class DefaultSimulationData2 implements JynaSimulationData {
 			}
 			sb.append("\n");
 		}
-		return super.toString();
+		return sb.toString();
 	}
 }

@@ -4,23 +4,41 @@
   <metaModelFile>mediumSoftwareProject-save.jymm</metaModelFile>
   <classInstances>
     <classInstance>
+      <name>DesignModel</name>
+      <class>Artifact</class>
+      <items>
+        <stock>
+          <name>Errors</name>
+          <value>0.0</value>
+        </stock>
+        <property>
+          <name>latent_errors</name>
+          <value>0.0</value>
+        </property>
+      </items>
+    </classInstance>
+    <classInstance>
+      <name>SourceCode</name>
+      <class>Artifact</class>
+      <items>
+        <stock>
+          <name>Errors</name>
+          <value>0.0</value>
+        </stock>
+        <property>
+          <name>latent_errors</name>
+          <value>0.0</value>
+        </property>
+      </items>
+    </classInstance>
+    <classInstance>
       <name>Coding</name>
       <class>Activity</class>
       <items>
         <stock>
-          <name>TimeToConclude</name>
+          <name>ExecutingOrDone</name>
           <value>0.0</value>
         </stock>
-        <singleRelation>
-          <name>Outcome</name>
-          <target>SourceCode</target>
-        </singleRelation>
-        <multiRelation>
-          <name>Team</name>
-          <targets>
-            <target>D2</target>
-          </targets>
-        </multiRelation>
         <multiRelation>
           <name>Income</name>
           <targets>
@@ -31,30 +49,26 @@
           <name>duration</name>
           <value>5.0</value>
         </property>
+        <singleRelation>
+          <name>Outcome</name>
+          <target>SourceCode</target>
+        </singleRelation>
+        <stock>
+          <name>TimeToConclude</name>
+          <value>0.0</value>
+        </stock>
+        <multiRelation>
+          <name>Team</name>
+          <targets>
+            <target>D2</target>
+          </targets>
+        </multiRelation>
         <multiRelation>
           <name>Precedence</name>
           <targets>
             <target>Designing</target>
           </targets>
         </multiRelation>
-        <stock>
-          <name>ExecutingOrDone</name>
-          <value>0.0</value>
-        </stock>
-      </items>
-    </classInstance>
-    <classInstance>
-      <name>AnalisysModel</name>
-      <class>Artifact</class>
-      <items>
-        <property>
-          <name>latent_errors</name>
-          <value>10.0</value>
-        </property>
-        <stock>
-          <name>Errors</name>
-          <value>0.0</value>
-        </stock>
       </items>
     </classInstance>
     <classInstance>
@@ -62,19 +76,9 @@
       <class>Activity</class>
       <items>
         <stock>
-          <name>TimeToConclude</name>
+          <name>ExecutingOrDone</name>
           <value>0.0</value>
         </stock>
-        <singleRelation>
-          <name>Outcome</name>
-          <target>DesignModel</target>
-        </singleRelation>
-        <multiRelation>
-          <name>Team</name>
-          <targets>
-            <target>D1</target>
-          </targets>
-        </multiRelation>
         <multiRelation>
           <name>Income</name>
           <targets>
@@ -85,48 +89,34 @@
           <name>duration</name>
           <value>10.0</value>
         </property>
+        <singleRelation>
+          <name>Outcome</name>
+          <target>DesignModel</target>
+        </singleRelation>
         <stock>
-          <name>ExecutingOrDone</name>
+          <name>TimeToConclude</name>
           <value>0.0</value>
         </stock>
+        <multiRelation>
+          <name>Team</name>
+          <targets>
+            <target>D1</target>
+          </targets>
+        </multiRelation>
       </items>
     </classInstance>
     <classInstance>
-      <name>DesignModel</name>
+      <name>AnalisysModel</name>
       <class>Artifact</class>
       <items>
-        <property>
-          <name>latent_errors</name>
-          <value>0.0</value>
-        </property>
         <stock>
           <name>Errors</name>
           <value>0.0</value>
         </stock>
-      </items>
-    </classInstance>
-    <classInstance>
-      <name>D2</name>
-      <class>Developer</class>
-      <items>
-        <property>
-          <name>experience</name>
-          <value>0.8</value>
-        </property>
-      </items>
-    </classInstance>
-    <classInstance>
-      <name>SourceCode</name>
-      <class>Artifact</class>
-      <items>
         <property>
           <name>latent_errors</name>
-          <value>0.0</value>
+          <value>10.0</value>
         </property>
-        <stock>
-          <name>Errors</name>
-          <value>0.0</value>
-        </stock>
       </items>
     </classInstance>
     <classInstance>
@@ -136,6 +126,16 @@
         <property>
           <name>experience</name>
           <value>1.0</value>
+        </property>
+      </items>
+    </classInstance>
+    <classInstance>
+      <name>D2</name>
+      <class>Developer</class>
+      <items>
+        <property>
+          <name>experience</name>
+          <value>0.8</value>
         </property>
       </items>
     </classInstance>
