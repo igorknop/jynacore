@@ -43,13 +43,13 @@
   </auxiliaries>
   <informations>
     <information>
-      <name>CurrentFactor</name>
-      <source>GrowthFactor</source>
+      <name>CurrentPopulation</name>
+      <source>Population</source>
       <consumer>GrowthRate</consumer>
     </information>
     <information>
-      <name>CurrentPopulation</name>
-      <source>Population</source>
+      <name>CurrentFactor</name>
+      <source>GrowthFactor</source>
       <consumer>GrowthRate</consumer>
     </information>
   </informations>

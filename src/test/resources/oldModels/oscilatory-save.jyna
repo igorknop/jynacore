@@ -2,18 +2,18 @@
 <systemDynamicsModel>
   <stocks>
     <finiteStock>
-      <name>Y</name>
-      <initialValue>
-        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-          <m:cn>0.0</m:cn>
-        </m:math>
-      </initialValue>
-    </finiteStock>
-    <finiteStock>
       <name>X</name>
       <initialValue>
         <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
           <m:cn>1.0</m:cn>
+        </m:math>
+      </initialValue>
+    </finiteStock>
+    <finiteStock>
+      <name>Y</name>
+      <initialValue>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:cn>0.0</m:cn>
         </m:math>
       </initialValue>
     </finiteStock>
@@ -27,6 +27,16 @@
     </infiniteStock>
   </infiniteStocks>
   <rates>
+    <rate>
+      <name>dX</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:ci>Y</m:ci>
+        </m:math>
+      </expression>
+      <source>XSource</source>
+      <target>X</target>
+    </rate>
     <rate>
       <name>dY</name>
       <expression>
@@ -44,18 +54,20 @@
       <source>YSource</source>
       <target>Y</target>
     </rate>
-    <rate>
-      <name>dX</name>
-      <expression>
-        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-          <m:ci>Y</m:ci>
-        </m:math>
-      </expression>
-      <source>XSource</source>
-      <target>X</target>
-    </rate>
   </rates>
   <auxiliaries>
+    <auxiliary>
+      <name>difference</name>
+      <expression>
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:apply>
+            <m:minus />
+            <m:ci>X</m:ci>
+            <m:ci>desiredX</m:ci>
+          </m:apply>
+        </m:math>
+      </expression>
+    </auxiliary>
     <auxiliary>
       <name>desiredX</name>
       <expression>
@@ -72,34 +84,17 @@
         </m:math>
       </expression>
     </auxiliary>
-    <auxiliary>
-      <name>difference</name>
-      <expression>
-        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-          <m:apply>
-            <m:minus />
-            <m:ci>X</m:ci>
-            <m:ci>desiredX</m:ci>
-          </m:apply>
-        </m:math>
-      </expression>
-    </auxiliary>
   </auxiliaries>
   <informations>
-    <information>
-      <name>CurrentY</name>
-      <source>Y</source>
-      <consumer>dX</consumer>
-    </information>
-    <information>
-      <name>CurrentDesiredX</name>
-      <source>desiredX</source>
-      <consumer>difference</consumer>
-    </information>
     <information>
       <name>CurrentDifference</name>
       <source>difference</source>
       <consumer>dY</consumer>
+    </information>
+    <information>
+      <name>CurrentY</name>
+      <source>Y</source>
+      <consumer>dX</consumer>
     </information>
     <information>
       <name>CurrentX</name>
@@ -110,6 +105,11 @@
       <name>CurrentFactor</name>
       <source>factor</source>
       <consumer>dY</consumer>
+    </information>
+    <information>
+      <name>CurrentDesiredX</name>
+      <source>desiredX</source>
+      <consumer>difference</consumer>
     </information>
   </informations>
 </systemDynamicsModel>

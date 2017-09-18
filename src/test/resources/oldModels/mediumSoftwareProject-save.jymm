@@ -3,28 +3,29 @@
   <name>MyProject</name>
   <classes>
     <class>
+      <name>Developer</name>
+      <items>
+        <auxiliary>
+          <name>Productivity</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>experience</m:ci>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <property>
+          <name>experience</name>
+          <value>1.0</value>
+        </property>
+      </items>
+    </class>
+    <class>
       <name>Activity</name>
       <items>
-        <finiteStock>
-          <name>TimeToConclude</name>
-          <initialValue>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:ci>duration</m:ci>
-            </m:math>
-          </initialValue>
-        </finiteStock>
         <property>
           <name>duration</name>
           <value>0.0</value>
         </property>
-        <auxiliary>
-          <name>ErrorsPerDay</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:cn>5.0</m:cn>
-            </m:math>
-          </expression>
-        </auxiliary>
         <finiteStock>
           <name>ExecutingOrDone</name>
           <initialValue>
@@ -42,7 +43,7 @@
                 <m:apply>
                   <m:gt />
                   <m:ci>RTExecuting</m:ci>
-                  <m:cn>0.0010</m:cn>
+                  <m:cn>0.001</m:cn>
                 </m:apply>
                 <m:apply>
                   <m:divide />
@@ -59,6 +60,48 @@
           </expression>
           <target>Outcome.Errors</target>
         </rate>
+        <auxiliary>
+          <name>Prod</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:groupmax />
+                <m:ci>Team</m:ci>
+                <m:ci>Productivity</m:ci>
+              </m:apply>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <rate>
+          <name>RTExecuting</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:apply>
+                <m:if />
+                <m:apply>
+                  <m:and />
+                  <m:apply>
+                    <m:lt />
+                    <m:ci>ExecutingOrDone</m:ci>
+                    <m:cn>0.001</m:cn>
+                  </m:apply>
+                  <m:ci>DependOk</m:ci>
+                </m:apply>
+                <m:cn>1.0</m:cn>
+                <m:cn>0.0</m:cn>
+              </m:apply>
+            </m:math>
+          </expression>
+          <target>ExecutingOrDone</target>
+        </rate>
+        <finiteStock>
+          <name>TimeToConclude</name>
+          <initialValue>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>duration</m:ci>
+            </m:math>
+          </initialValue>
+        </finiteStock>
         <rate>
           <name>Work</name>
           <expression>
@@ -119,54 +162,24 @@
                   <m:ci>Precedence</m:ci>
                   <m:ci>TimeToConclude</m:ci>
                 </m:apply>
-                <m:cn>0.0010</m:cn>
+                <m:cn>0.001</m:cn>
               </m:apply>
             </m:math>
           </expression>
         </auxiliary>
         <auxiliary>
-          <name>Prod</name>
+          <name>ErrorsPerDay</name>
           <expression>
             <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:apply>
-                <m:groupmax />
-                <m:ci>Team</m:ci>
-                <m:ci>Productivity</m:ci>
-              </m:apply>
+              <m:cn>5.0</m:cn>
             </m:math>
           </expression>
         </auxiliary>
-        <rate>
-          <name>RTExecuting</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:apply>
-                <m:if />
-                <m:apply>
-                  <m:and />
-                  <m:apply>
-                    <m:lt />
-                    <m:ci>ExecutingOrDone</m:ci>
-                    <m:cn>0.0010</m:cn>
-                  </m:apply>
-                  <m:ci>DependOk</m:ci>
-                </m:apply>
-                <m:cn>1.0</m:cn>
-                <m:cn>0.0</m:cn>
-              </m:apply>
-            </m:math>
-          </expression>
-          <target>ExecutingOrDone</target>
-        </rate>
       </items>
     </class>
     <class>
       <name>Artifact</name>
       <items>
-        <property>
-          <name>latent_errors</name>
-          <value>0.0</value>
-        </property>
         <finiteStock>
           <name>Errors</name>
           <initialValue>
@@ -175,47 +188,34 @@
             </m:math>
           </initialValue>
         </finiteStock>
-      </items>
-    </class>
-    <class>
-      <name>Developer</name>
-      <items>
         <property>
-          <name>experience</name>
-          <value>1.0</value>
+          <name>latent_errors</name>
+          <value>0.0</value>
         </property>
-        <auxiliary>
-          <name>Productivity</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:ci>experience</m:ci>
-            </m:math>
-          </expression>
-        </auxiliary>
       </items>
     </class>
   </classes>
   <relations>
-    <multiRelation>
-      <name>Precedence</name>
-      <source>Activity</source>
-      <target>Activity</target>
-      <targetRole>NextActivities</targetRole>
-    </multiRelation>
     <singleRelation>
       <name>Outcome</name>
       <source>Activity</source>
       <target>Artifact</target>
     </singleRelation>
     <multiRelation>
+      <name>Income</name>
+      <source>Activity</source>
+      <target>Artifact</target>
+    </multiRelation>
+    <multiRelation>
       <name>Team</name>
       <source>Activity</source>
       <target>Developer</target>
     </multiRelation>
     <multiRelation>
-      <name>Income</name>
+      <name>Precedence</name>
       <source>Activity</source>
-      <target>Artifact</target>
+      <target>Activity</target>
+      <targetRole>NextActivities</targetRole>
     </multiRelation>
   </relations>
 </metaModel>

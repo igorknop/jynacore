@@ -7,31 +7,21 @@
       <name>Coding</name>
       <class>Activity</class>
       <items>
-        <stock>
-          <name>TimeToConclude</name>
-          <value>0.0</value>
-        </stock>
         <property>
           <name>duration</name>
           <value>25.0</value>
         </property>
+        <stock>
+          <name>TimeToConclude</name>
+          <value>0.0</value>
+        </stock>
         <multiRelation>
           <name>Team</name>
           <targets>
-            <target>D2</target>
             <target>D1</target>
+            <target>D2</target>
           </targets>
         </multiRelation>
-      </items>
-    </classInstance>
-    <classInstance>
-      <name>D2</name>
-      <class>Developer</class>
-      <items>
-        <property>
-          <name>experience</name>
-          <value>1.0</value>
-        </property>
       </items>
     </classInstance>
     <classInstance>
@@ -41,6 +31,16 @@
         <property>
           <name>experience</name>
           <value>0.8</value>
+        </property>
+      </items>
+    </classInstance>
+    <classInstance>
+      <name>D2</name>
+      <class>Developer</class>
+      <items>
+        <property>
+          <name>experience</name>
+          <value>1.0</value>
         </property>
       </items>
     </classInstance>

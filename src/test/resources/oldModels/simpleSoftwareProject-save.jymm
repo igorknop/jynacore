@@ -3,29 +3,29 @@
   <name>Simple Software Project</name>
   <classes>
     <class>
+      <name>Developer</name>
+      <items>
+        <auxiliary>
+          <name>Productivity</name>
+          <expression>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>experience</m:ci>
+            </m:math>
+          </expression>
+        </auxiliary>
+        <property>
+          <name>experience</name>
+          <value>1.0</value>
+        </property>
+      </items>
+    </class>
+    <class>
       <name>Activity</name>
       <items>
-        <finiteStock>
-          <name>TimeToConclude</name>
-          <initialValue>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:ci>duration</m:ci>
-            </m:math>
-          </initialValue>
-        </finiteStock>
         <property>
           <name>duration</name>
           <value>20.0</value>
         </property>
-        <rate>
-          <name>Work</name>
-          <expression>
-            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:ci>Prod</m:ci>
-            </m:math>
-          </expression>
-          <target>TimeToConclude</target>
-        </rate>
         <auxiliary>
           <name>Prod</name>
           <expression>
@@ -38,23 +38,23 @@
             </m:math>
           </expression>
         </auxiliary>
-      </items>
-    </class>
-    <class>
-      <name>Developer</name>
-      <items>
-        <property>
-          <name>experience</name>
-          <value>1.0</value>
-        </property>
-        <auxiliary>
-          <name>Productivity</name>
+        <finiteStock>
+          <name>TimeToConclude</name>
+          <initialValue>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <m:ci>duration</m:ci>
+            </m:math>
+          </initialValue>
+        </finiteStock>
+        <rate>
+          <name>Work</name>
           <expression>
             <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
-              <m:ci>experience</m:ci>
+              <m:ci>Prod</m:ci>
             </m:math>
           </expression>
-        </auxiliary>
+          <target>TimeToConclude</target>
+        </rate>
       </items>
     </class>
   </classes>
