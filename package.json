@@ -1,0 +1,32 @@
+{
+  "name": "jynacore",
+  "version": "1.0.0",
+  "description": "System Dynamics Modeler and Simulator Engine in TypeScript",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [
+    "system-dynamics",
+    "simulation",
+    "euler",
+    "rk4",
+    "metamodel",
+    "expression-evaluator"
+  ],
+  "author": "Igor Knop",
+  "license": "LGPL-3.0",
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
