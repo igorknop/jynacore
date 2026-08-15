@@ -22,7 +22,8 @@
   "author": "Igor Knop",
   "license": "LGPL-3.0",
   "dependencies": {
-    "fast-xml-parser": "^4.5.0"
+    "fast-xml-parser": "^4.5.0",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

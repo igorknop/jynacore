@@ -45,5 +45,6 @@ public interface MetaModelInstanceStorer extends JynaModelStorer {
 	void saveToFile(MetaModelInstance modelInstance, File fileName) throws Exception;
 
 	public static final String META_MODEL_INSTANCE_EXTENSION = "jymmi";
+	public static final String META_MODEL_INSTANCE_YAML_EXTENSION = "jyi";
 
 }

@@ -167,6 +167,13 @@ export class ExpressionToMathMLConverter {
             this.parseExpressionToObj(expr.getRightOperand()!),
           ],
         };
+      case "NEGATION":
+        return {
+          "m:apply": [
+            { "m:inverse": "" },
+            this.parseExpressionToObj(expr.getMiddleOperand() ?? expr.getLeftOperand()!),
+          ],
+        };
       case "CONSTANT":
         return { "m:cn": String(expr.getValue()) };
       default:
@@ -222,14 +229,7 @@ export class ExpressionToMathMLConverter {
         for (const item of nodeVal) {
           for (const k of Object.keys(item)) {
             if (!k.startsWith("@_")) {
-              const v = item[k];
-              if (Array.isArray(v)) {
-                for (const arrVal of v) {
-                  childPairs.push({ tag: k, val: arrVal });
-                }
-              } else {
-                childPairs.push({ tag: k, val: v });
-              }
+              childPairs.push({ tag: k, val: item[k] });
             }
           }
         }
@@ -238,8 +238,8 @@ export class ExpressionToMathMLConverter {
           if (!k.startsWith("@_")) {
             const v = nodeVal[k];
             if (Array.isArray(v)) {
-              for (const arrVal of v) {
-                childPairs.push({ tag: k, val: arrVal });
+              for (const elem of v) {
+                childPairs.push({ tag: k, val: elem });
               }
             } else {
               childPairs.push({ tag: k, val: v });

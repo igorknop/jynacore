@@ -36,5 +36,6 @@ public interface MetaModelStorer {
 	void saveToFile(MetaModel model, File fileName) throws Exception;
 
 	public static final String META_MODEL_EXTENSION = "jymm";
+	public static final String META_MODEL_YAML_EXTENSION = "jym";
 
 }
